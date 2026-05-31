@@ -14,20 +14,30 @@ export function VintageCard({
   href,
 }: VintageCardProps) {
   const content = (
-    <article className="vintage-card h-full rounded-[2rem] p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
-      {category && (
-        <p className="text-xs uppercase tracking-[0.28em] text-[#d8b46a]">
-          {category}
+    <article className="cartoon-ink group h-full overflow-hidden rounded-[2rem] p-6 transition-all duration-300 hover:-translate-y-2">
+      <div className="relative z-10">
+        {category && (
+          <p className="cartoon-badge">
+            {category}
+          </p>
+        )}
+
+        <h3 className="cartoon-title mt-6 text-2xl font-black uppercase leading-tight tracking-[-0.03em] text-[#f4e7c5]">
+          {title}
+        </h3>
+
+        <div className="vintage-rule mt-5" />
+
+        <p className="mt-5 text-sm leading-7 text-[#f4e7c5]/65">
+          {description}
         </p>
-      )}
 
-      <h3 className="mt-4 text-2xl font-black uppercase text-[#f4e7c5]">
-        {title}
-      </h3>
-
-      <p className="mt-4 text-sm leading-7 text-[#f4e7c5]/60">
-        {description}
-      </p>
+        {href && (
+          <p className="mt-8 text-xs font-black uppercase tracking-[0.25em] text-[#d8b46a]">
+            Abrir arquivo →
+          </p>
+        )}
+      </div>
     </article>
   );
 

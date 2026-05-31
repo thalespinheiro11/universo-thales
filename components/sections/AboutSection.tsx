@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
+import { NyxNote } from "../ui/NyxNote";
 import { Reveal } from "../ui/Reveal";
 import { SectionTitle } from "../ui/SectionTitle";
 
@@ -50,12 +51,23 @@ export function AboutSection() {
                   com imaginação.
                 </p>
               </div>
+
+              <div className="mt-10">
+                <NyxNote
+                  icon="🌙"
+                  title="Arquivo inicial catalogado"
+                >
+                  A Oficial Nyx acompanha este universo digital como uma
+                  navegadora de bordo: registrando projetos, observando ideias
+                  e marcando cada nova descoberta da jornada.
+                </NyxNote>
+              </div>
             </div>
           </Reveal>
 
           <Reveal delay={0.16}>
             <div className="relative">
-              <div className="vintage-card hand-drawn-border relative overflow-hidden rounded-[2.5rem] p-8">
+              <div className="cartoon-ink relative overflow-hidden rounded-[2.5rem] p-8">
                 <div className="absolute inset-0 opacity-[0.06]">
                   <div
                     className="h-full w-full"
@@ -68,11 +80,11 @@ export function AboutSection() {
                 </div>
 
                 <div className="relative z-10">
-                  <p className="text-xs font-black uppercase tracking-[0.35em] text-[#d8b46a]">
+                  <p className="cartoon-badge">
                     Registro de exploração
                   </p>
 
-                  <h3 className="mt-4 text-4xl font-black uppercase leading-tight text-[#f4e7c5]">
+                  <h3 className="cartoon-title mt-5 text-4xl font-black uppercase leading-tight text-[#f4e7c5]">
                     Laboratório criativo orbital
                   </h3>
 
@@ -85,14 +97,14 @@ export function AboutSection() {
                     {journeyTopics.map((topic) => (
                       <div
                         key={topic}
-                        className="rounded-full border border-[#f4e7c5]/20 bg-[#f4e7c5]/5 px-4 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#f4e7c5]/80"
+                        className="cartoon-badge"
                       >
                         {topic}
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-10 h-px w-full bg-gradient-to-r from-[#d8b46a] via-[#f4e7c5]/40 to-transparent" />
+                  <div className="vintage-rule mt-10" />
 
                   <div className="mt-8 flex items-center justify-between">
                     <div>
@@ -114,7 +126,7 @@ export function AboutSection() {
                         repeat: Infinity,
                         ease: "linear",
                       }}
-                      className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-dashed border-[#f4e7c5]/40"
+                      className="rubber-orbit flex h-20 w-20 items-center justify-center rounded-full"
                     >
                       <div className="h-8 w-8 rounded-full bg-[#d8b46a]/70" />
                     </motion.div>

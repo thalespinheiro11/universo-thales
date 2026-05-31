@@ -43,7 +43,7 @@ export function HeroSection() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute left-10 top-32 h-28 w-28 rounded-full border border-[#f4e7c5]/30 bg-[#d8b46a]/20 blur-[1px]"
+        className="absolute left-10 top-32 h-28 w-28 rounded-full border-[3px] border-[#f4e7c5]/50 bg-[#d8b46a]/20 shadow-[5px_5px_0_rgba(8,7,6,0.8)]"
       />
 
       <motion.div
@@ -56,7 +56,7 @@ export function HeroSection() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute right-10 top-40 h-40 w-40 rounded-full border border-[#f4e7c5]/20 bg-[#b88952]/10"
+        className="absolute right-10 top-40 h-40 w-40 rounded-full border-[3px] border-dashed border-[#f4e7c5]/35 bg-[#b88952]/10 shadow-[6px_6px_0_rgba(8,7,6,0.75)]"
       />
 
       <Parallax offset={120}>
@@ -67,7 +67,7 @@ export function HeroSection() {
         {stars.map((star, index) => (
           <span
             key={index}
-            className="absolute h-[2px] w-[2px] rounded-full bg-[#f4e7c5]"
+            className="absolute h-[3px] w-[3px] rounded-full bg-[#f4e7c5] shadow-[2px_2px_0_rgba(8,7,6,0.8)]"
             style={{
               left: star.left,
               top: star.top,
@@ -100,7 +100,7 @@ export function HeroSection() {
           <SectionBadge>Diário de bordo digital</SectionBadge>
 
           <h1
-            className="mt-8 max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-[-0.06em] text-[#f4e7c5] sm:text-5xl md:text-7xl lg:text-8xl"
+            className="cartoon-title mt-8 max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-[-0.06em] text-[#f4e7c5] sm:text-5xl md:text-7xl lg:text-8xl"
             style={{
               fontFamily: "Cinzel, serif",
             }}
@@ -151,13 +151,13 @@ export function HeroSection() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="vintage-card hand-drawn-border space-glow relative mx-auto aspect-square max-w-md rounded-[3rem] p-8"
+              className="cartoon-ink space-glow relative mx-auto aspect-square max-w-md rounded-[3rem] p-8"
             >
-              <div className="absolute -left-8 top-10 rounded-full border border-[#f4e7c5]/30 bg-[#080706] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[#d8b46a]">
+              <div className="absolute -left-8 top-10 rounded-full border-[3px] border-[#f4e7c5]/70 bg-[#080706] px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-[#d8b46a] shadow-[4px_4px_0_rgba(8,7,6,0.9)]">
                 TRANSMISSÃO ORBITAL
               </div>
 
-              <div className="flex h-full flex-col items-center justify-center rounded-[2rem] border border-[#f4e7c5]/15 bg-[#080706]/40 text-center">
+              <div className="relative z-10 flex h-full flex-col items-center justify-center rounded-[2rem] border-[3px] border-[#f4e7c5]/18 bg-[#080706]/40 text-center">
                 <motion.div
                   animate={{
                     rotate: 360,
@@ -167,7 +167,7 @@ export function HeroSection() {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="mb-8 h-28 w-28 rounded-full border-4 border-dashed border-[#f4e7c5]"
+                  className="rubber-orbit mb-8 h-28 w-28 rounded-full"
                 />
 
                 <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#9f875f]">
@@ -175,7 +175,7 @@ export function HeroSection() {
                 </p>
 
                 <h2
-                  className="mt-4 text-4xl font-black uppercase tracking-[-0.04em] text-[#f4e7c5]"
+                  className="cartoon-title mt-4 text-4xl font-black uppercase tracking-[-0.04em] text-[#f4e7c5]"
                   style={{
                     fontFamily: "Cinzel, serif",
                   }}
