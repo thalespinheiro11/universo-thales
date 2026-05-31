@@ -126,6 +126,75 @@ content: [
 },
 
 {
+slug: "por-que-gosto-de-construir-coisas",
+
+title: "Por Que Gosto de Construir Coisas",
+
+category: "Reflexões",
+
+date: "Junho 2026",
+
+readTime: "3 min",
+
+excerpt:
+"Existe algo especial em olhar para algo e saber que aquilo não existia antes do seu esforço.",
+
+content: [
+"Sempre tive dificuldade em explicar exatamente por que gosto tanto de criar projetos. Pode ser um site, uma aplicação, uma ideia ou até mesmo um plano para o futuro. O formato muda, mas a sensação costuma ser a mesma.",
+
+"Existe algo especial em olhar para algo e saber que aquilo não existia antes do seu esforço. Em algum momento era apenas uma ideia. Depois se tornou um rascunho, uma tentativa, uma versão imperfeita e, eventualmente, algo real.",
+
+"Talvez seja isso que mais me atraia na tecnologia. Ela permite transformar imaginação em algo concreto. Uma linha de código pode parecer simples, mas muitas vezes representa uma solução para um problema, uma ferramenta útil ou até mesmo o início de algo maior.",
+
+"Construir também ensina humildade. Nem todo projeto funciona da forma como imaginamos. Alguns precisam ser refeitos, outros evoluem para caminhos completamente diferentes. Ainda assim, cada tentativa deixa algum aprendizado.",
+
+"Acredito que grande parte do meu interesse por astronomia venha da mesma origem. Quando observamos o universo, percebemos que tudo o que conhecemos foi resultado de incontáveis processos de construção ao longo de bilhões de anos.",
+
+"Estrelas, planetas, galáxias e até mesmo a vida surgiram porque algo foi sendo construído gradualmente. Talvez seja por isso que gosto tanto da ideia de criar. Construir significa participar, mesmo que em uma escala pequena, desse processo contínuo de transformação.",
+
+"No fim das contas, não se trata apenas de software ou tecnologia. Trata-se de deixar algo melhor do que estava antes, aprender durante a jornada e transformar ideias em realidade.",
+
+"Talvez seja por isso que continuo criando novos projetos. Não porque todos serão grandes sucessos, mas porque existe algo profundamente satisfatório em construir algo que antes não existia."
+
+]
+},
+
+{
+slug: "desenvolver-software-e-como-explorar-o-espaco",
+
+title: "Desenvolver Software se Parece Mais com Explorar o Espaço do que Imaginamos",
+
+category: "Tecnologia",
+
+date: "Junho 2026",
+
+readTime: "3 min",
+
+excerpt:
+"Todo projeto começa com um destino em mente, mas ninguém sabe exatamente o que encontrará durante a jornada.",
+
+content: [
+"Quando pensamos em exploração espacial, geralmente imaginamos foguetes, telescópios e missões rumo ao desconhecido. Curiosamente, desenvolver software também compartilha muitas dessas características.",
+
+"Todo projeto começa com um objetivo. Existe uma ideia, uma necessidade ou um problema que precisa ser resolvido. O destino parece relativamente claro, mas o caminho raramente é tão simples quanto imaginamos.",
+
+"Assim como uma missão espacial, o desenvolvimento exige planejamento. É preciso definir rotas, prever desafios e reunir as ferramentas necessárias antes mesmo do primeiro passo.",
+
+"Mas existe algo que nenhum planejamento consegue eliminar completamente: o desconhecido. Bugs inesperados aparecem. Requisitos mudam. Novas oportunidades surgem no meio do caminho. De repente, a jornada passa a ser tão importante quanto o destino.",
+
+"Em muitos momentos, programar se parece menos com construir uma máquina e mais com explorar um território ainda não mapeado. Cada problema resolvido revela novos desafios. Cada descoberta abre portas para possibilidades que antes não existiam.",
+
+"Talvez seja por isso que tantas pessoas se apaixonam por tecnologia. Existe uma sensação constante de descoberta. Sempre há algo novo para aprender, melhorar ou compreender.",
+
+"A astronomia me ensinou que a exploração nunca termina. Quanto mais observamos o universo, mais perguntas surgem. No desenvolvimento de software acontece algo parecido. Cada projeto concluído amplia nossos horizontes e nos mostra o quanto ainda existe para descobrir.",
+
+"Talvez a conexão entre tecnologia e espaço seja justamente essa. Ambas as áreas são movidas pela curiosidade. Ambas exigem coragem para avançar em direção ao desconhecido. E ambas nos lembram que as maiores descobertas costumam estar além do próximo horizonte.",
+
+"No final, seja escrevendo código ou observando as estrelas, a sensação permanece a mesma: existe algo fascinante esperando para ser explorado."
+
+]
+},
+{
   slug: "teoria-da-floresta-negra",
 
 title: "A Teoria da Floresta Negra: E se o Universo estiver em silêncio por um motivo?",
@@ -158,6 +227,6 @@ content: [
 
 ]
 
-}
+},
 
 ]
