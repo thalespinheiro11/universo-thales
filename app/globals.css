@@ -1,26 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap");
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #090807;
+  --foreground: #f4e7c5;
+
+  --paper: #15110d;
+  --paper-2: #1b1611;
+
+  --gold: #d8b46a;
+  --gold-soft: #b88952;
+
+  --border: rgba(244, 231, 197, 0.12);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at top, rgba(216, 180, 106, 0.08), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(184, 137, 82, 0.08), transparent 30%),
+    linear-gradient(to bottom, #090807, #0d0b09);
+
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+  font-family: "Manrope", sans-serif;
+
+  overflow-x: hidden;
+}
+
+/* TEXTURA GLOBAL */
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  background-image:
+    url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+
+  opacity: 0.18;
+
+  pointer-events: none;
+
+  z-index: 999;
+}
+
+/* FILM GRAIN */
+body::after {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  background-image:
+    repeating-radial-gradient(
+      circle at 0 0,
+      rgba(255,255,255,0.035),
+      rgba(255,255,255,0.035) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+  opacity: 0.06;
+
+  mix-blend-mode: overlay;
+
+  pointer-events: none;
+
+  animation: grainMove 8s linear infinite;
+
+  z-index: 999;
+}
+
+@keyframes grainMove {
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  25% {
+    transform: translate(8px, -6px);
+  }
+
+  50% {
+    transform: translate(-6px, 4px);
+  }
+
+  75% {
+    transform: translate(4px, 8px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+.vintage-card {
+  background:
+    linear-gradient(
+      to bottom right,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.01)
+    );
+
+  border: 1px solid var(--border);
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+.hand-drawn-border {
+  position: relative;
+}
+
+.hand-drawn-border::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  border: 2px dashed rgba(244, 231, 197, 0.08);
+
+  pointer-events: none;
+}
+
+.space-glow {
+  box-shadow:
+    0 0 80px rgba(216, 180, 106, 0.08),
+    0 0 140px rgba(216, 180, 106, 0.04);
+}
+
+.section-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+  background-size: 40px 40px;
 }
