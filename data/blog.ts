@@ -91,4 +91,38 @@ export const blogPosts = [
     "Talvez seja por isso que gosto tanto da ideia de construir um universo digital. No fundo, cada projeto é uma nova missão de exploração."
   ],
 },
+
+{
+slug: "informatech-backup-monitor",
+
+title: "Informatech Backup Monitor: Como um problema real virou uma solução prática",
+
+category: "Projetos",
+
+date: "Junho 2026",
+
+readTime: "2 min",
+
+excerpt:
+"Permitir que a equipe visualize rapidamente o status dos backups em um único lugar.",
+
+content: [
+"Nem todos os projetos começam com uma ideia revolucionária. Alguns surgem simplesmente porque existe um problema real precisando ser resolvido.",
+
+"O Informatech Backup Monitor nasceu justamente dessa necessidade. Em muitos ambientes de TI, os backups são executados diariamente, mas a conferência de seu funcionamento ainda depende de verificações manuais e repetitivas.",
+
+"A proposta do projeto era simples: criar uma forma rápida e centralizada de visualizar o status dos backups sem a necessidade de acessar diversos servidores ou diretórios individualmente.",
+
+"Durante o desenvolvimento, procurei focar em algo que considero essencial em qualquer ferramenta corporativa: simplicidade. Em vez de adicionar dezenas de funcionalidades complexas, o objetivo era entregar informações claras e úteis da forma mais direta possível.",
+
+"A aplicação realiza o monitoramento dos diretórios configurados e apresenta indicadores que ajudam a identificar rapidamente possíveis falhas ou atrasos nos processos de backup.",
+
+"Além de resolver um problema operacional do dia a dia, o projeto também serviu como uma excelente oportunidade para aprofundar conhecimentos em desenvolvimento de aplicações, arquitetura de sistemas e criação de interfaces voltadas para produtividade.",
+
+"Mais do que um sistema de monitoramento, o Informatech Backup Monitor representa algo que valorizo muito na tecnologia: transformar tarefas repetitivas em processos mais eficientes através de soluções simples e bem planejadas.",
+
+"Esse é apenas o primeiro passo. Como todo projeto vivo, novas funcionalidades, melhorias visuais e recursos de automação continuam fazendo parte da sua evolução."
+]
+},
+
 ];
