@@ -11,6 +11,11 @@ export const siteData = {
   description:
     "Portfólio, projetos, lives, astronomia, física e construção pública de ideias.",
 
+  location: "Joinville, SC - Brasil",
+
+  mission:
+    "Construir tecnologia, conteúdo e experiências digitais que misturem criatividade, exploração e propósito.",
+
   social: {
     twitch: "https://twitch.tv/o_boja",
 
@@ -18,6 +23,8 @@ export const siteData = {
 
     astronomy: "https://instagram.com/astronomy.tech",
 
-    email: "thalescospi@gmail.com",
+    email: "contato@thalespinheiro.com.br",
+
+    whatsapp: "https://wa.me/5547996922797",
   },
 };
