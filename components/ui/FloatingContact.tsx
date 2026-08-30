@@ -1,6 +1,16 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { siteData } from "@/data/site";
+import { isLocale } from "@/lib/i18n";
 
 export function FloatingContact() {
+  const pathname = usePathname();
+  const segments = pathname.split("/").filter(Boolean);
+  const isLocalizedHome = segments.length === 1 && isLocale(segments[0]);
+
+  if (isLocalizedHome) return null;
+
   return (
     <a
       href={siteData.social.whatsapp}

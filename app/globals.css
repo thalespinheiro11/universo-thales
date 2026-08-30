@@ -1,15 +1,30 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap");
-
+@import "@fontsource/cinzel/latin-600.css";
+@import "@fontsource/cinzel/latin-700.css";
 @import "tailwindcss";
 
 :root {
-  --background: #090807;
-  --foreground: #f4e7c5;
+  --background: var(--color-canvas);
+  --foreground: var(--color-foreground);
   --paper: #15110d;
   --paper-2: #1b1611;
   --gold: #d8b46a;
   --gold-soft: #b88952;
   --border: rgba(244, 231, 197, 0.12);
+}
+
+@theme {
+  --color-canvas: #050505;
+  --color-surface: #0b0b0b;
+  --color-surface-elevated: #121212;
+  --color-foreground: #f3f1ea;
+  --color-secondary: #c8c6bf;
+  --color-muted: #85857f;
+  --color-line: #2a2a28;
+  --color-line-strong: #777771;
+  --color-accent: #f3f1ea;
+  --color-focus: #ffffff;
+  --font-display: "Cinzel", Georgia, serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * {
@@ -18,15 +33,15 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--color-canvas);
 }
 
 body {
   background:
-    radial-gradient(circle at top, rgba(216, 180, 106, 0.08), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(184, 137, 82, 0.08), transparent 30%),
-    linear-gradient(to bottom, #090807, #0d0b09);
-  color: var(--foreground);
-  font-family: "Manrope", sans-serif;
+    radial-gradient(circle at 68% 8%, rgb(255 255 255 / 0.035), transparent 28rem),
+    var(--color-canvas);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
@@ -34,8 +49,13 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
-  opacity: 0.18;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 3px,
+    rgb(255 255 255 / 0.012) 4px
+  );
+  opacity: 0.32;
   pointer-events: none;
   z-index: 999;
 }
@@ -250,4 +270,53 @@ body::after {
   border: 3px solid rgba(244, 231, 197, 0.45);
   border-style: dashed;
   filter: drop-shadow(3px 3px 0 rgba(8, 7, 6, 0.9));
+}
+
+.hero-starfield {
+  background-image:
+    radial-gradient(circle at 12% 18%, rgb(243 241 234 / 0.85) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 30% 62%, rgb(243 241 234 / 0.55) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 46% 22%, rgb(243 241 234 / 0.65) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 72% 70%, rgb(243 241 234 / 0.4) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 88% 14%, rgb(243 241 234 / 0.7) 0 1px, transparent 1.5px);
+  background-size: 22rem 18rem, 26rem 24rem, 31rem 27rem, 28rem 20rem, 35rem 29rem;
+}
+
+.hero-orbit {
+  border: 1px solid rgb(243 241 234 / 0.2);
+  border-radius: 50%;
+  transform: rotate(-18deg);
+}
+
+.hero-coordinate-rule {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-line-strong) 0 1px,
+    transparent 1px 12px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--color-foreground);
+  color: var(--color-canvas);
 }

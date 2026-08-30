@@ -1,196 +1,142 @@
-"use client";
+import { ArrowDownRight } from "lucide-react";
+import Image from "next/image";
+import { LocalizedLink } from "@/components/i18n/LocalizedLink";
+import { getSiteContent } from "@/content/site";
 
-import { motion } from "framer-motion";
-import { personalLinks } from "@/lib/constants";
-import { Constellation } from "../ui/Constellation";
-import { MissionPanel } from "../ui/MissionPanel";
-import { OrbitalDecoration } from "../ui/OrbitalDecoration";
-import { Parallax } from "../ui/Parallax";
-import { SectionBadge } from "../ui/SectionBadge";
-import { VintageButton } from "../ui/VintageButton";
+type HeroSectionProps = {
+  content: ReturnType<typeof getSiteContent>["hero"];
+};
 
-const stars = [
-  { left: "8%", top: "18%" },
-  { left: "16%", top: "44%" },
-  { left: "24%", top: "28%" },
-  { left: "31%", top: "68%" },
-  { left: "42%", top: "16%" },
-  { left: "51%", top: "36%" },
-  { left: "63%", top: "24%" },
-  { left: "72%", top: "58%" },
-  { left: "84%", top: "32%" },
-  { left: "91%", top: "72%" },
-  { left: "12%", top: "82%" },
-  { left: "36%", top: "88%" },
-  { left: "56%", top: "78%" },
-  { left: "78%", top: "86%" },
-  { left: "94%", top: "14%" },
-];
-
-export function HeroSection() {
+export function HeroSection({ content }: HeroSectionProps) {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen items-center overflow-hidden px-6 pt-32"
+      aria-labelledby="hero-title"
+      className="hero-starfield relative isolate min-h-[100svh] overflow-hidden border-b border-line bg-canvas px-4 pb-12 pt-28 text-foreground sm:px-6 sm:pb-16 sm:pt-32 lg:px-10 lg:pb-20"
     >
-      <motion.div
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 6, 0],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute left-10 top-32 h-28 w-28 rounded-full border-[3px] border-[#f4e7c5]/50 bg-[#d8b46a]/20 shadow-[5px_5px_0_rgba(8,7,6,0.8)]"
-      />
-
-      <motion.div
-        animate={{
-          y: [0, 24, 0],
-          rotate: [0, -8, 0],
-        }}
-        transition={{
-          duration: 16,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute right-10 top-40 h-40 w-40 rounded-full border-[3px] border-dashed border-[#f4e7c5]/35 bg-[#b88952]/10 shadow-[6px_6px_0_rgba(8,7,6,0.75)]"
-      />
-
-      <Parallax offset={120}>
-        <div className="absolute bottom-20 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[#d8b46a]/10 blur-3xl" />
-      </Parallax>
-
-      <div className="absolute inset-0 opacity-40">
-        {stars.map((star, index) => (
-          <span
-            key={index}
-            className="absolute h-[3px] w-[3px] rounded-full bg-[#f4e7c5] shadow-[2px_2px_0_rgba(8,7,6,0.8)]"
-            style={{
-              left: star.left,
-              top: star.top,
-            }}
-          />
-        ))}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div className="hero-orbit absolute -right-[62vw] top-[16rem] h-[125vw] w-[125vw] sm:-right-[42vw] sm:top-[11rem] lg:-right-[17vw] lg:top-[3rem] lg:h-[74vw] lg:w-[74vw]" />
+        <div className="hero-orbit absolute -right-[34vw] top-[19rem] h-[78vw] w-[110vw] opacity-55 sm:-right-[22vw] lg:-right-[10vw] lg:top-[10rem] lg:h-[46vw] lg:w-[68vw]" />
+        <div className="absolute left-[8%] top-[31%] h-1 w-1 rounded-full bg-foreground shadow-[0_0_0_4px_rgb(243_241_234_/_0.06)]" />
+        <div className="absolute left-[47%] top-[18%] h-1.5 w-1.5 rotate-45 border border-foreground" />
+        <div className="absolute bottom-[18%] left-[42%] h-2 w-2 rounded-full border border-line-strong" />
       </div>
 
-      <OrbitalDecoration className="right-[-80px] top-32 hidden xl:block" />
-      <OrbitalDecoration className="bottom-10 left-[-120px] hidden xl:block" />
+      <div
+        className="pointer-events-none absolute -right-[92vw] top-[15rem] z-0 w-[217vw] opacity-30 sm:-right-[45vw] sm:top-[10rem] sm:w-[168vw] sm:opacity-38 lg:-right-[13vw] lg:top-[5rem] lg:w-[93vw] lg:opacity-68 xl:-right-[9vw] xl:w-[87vw] xl:opacity-72"
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/visual/moon-engraving.png"
+          alt=""
+          width={1536}
+          height={1024}
+          sizes="(min-width: 1280px) 87vw, (min-width: 1024px) 93vw, (min-width: 640px) 168vw, 217vw"
+          className="h-auto w-full"
+        />
+      </div>
 
-      <Constellation className="left-10 top-32 hidden xl:block" />
-      <Constellation className="bottom-16 right-20 hidden xl:block" />
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-10rem)] max-w-[90rem] flex-col justify-between">
+        <div className="grid flex-1 items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(22rem,0.75fr)]">
+          <div className="max-w-4xl py-6 lg:py-12">
+            <div className="mb-7 flex items-center gap-4 sm:mb-9">
+              <span className="font-mono text-[0.62rem] tracking-[0.22em] text-muted" aria-hidden="true">
+                01 // HERO
+              </span>
+              <span className="h-px w-12 bg-line-strong" aria-hidden="true" />
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-secondary">
+                {content.eyebrow}
+              </p>
+            </div>
 
-      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 1,
-          }}
-          className="relative z-10"
-        >
-          <SectionBadge>Diário de bordo digital</SectionBadge>
+            <h1
+              id="hero-title"
+              className="max-w-[12ch] font-display text-[clamp(3.2rem,10vw,8.4rem)] font-semibold uppercase leading-[0.82] tracking-[-0.075em] text-foreground"
+            >
+              {content.title}
+            </h1>
 
-          <h1
-            className="cartoon-title mt-8 max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-[-0.06em] text-[#f4e7c5] sm:text-5xl md:text-7xl lg:text-8xl"
-            style={{
-              fontFamily: "Cinzel, serif",
-            }}
-          >
-            Tecnologia, imaginação e exploração espacial.
-          </h1>
+            <p className="mt-7 max-w-xl text-sm leading-7 text-secondary sm:mt-9 sm:text-base sm:leading-8 lg:max-w-lg">
+              {content.description}
+            </p>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-[#f4e7c5]/70">
-            Eu sou {personalLinks.name}. Este é meu universo digital: um
-            laboratório retrofuturista onde tecnologia, astronomia, criatividade,
-            projetos e lives coexistem como um diário vivo de exploração.
-          </p>
+            <div className="mt-8 sm:mt-10">
+              <p className="mb-3 text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-muted">
+                {content.stackLabel}
+              </p>
+              <ul className="flex max-w-2xl flex-wrap gap-x-3 gap-y-2 text-xs font-medium text-secondary sm:text-sm">
+                {content.stack.map((item, index) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span>{item}</span>
+                    {index < content.stack.length - 1 && (
+                      <span className="text-line-strong" aria-hidden="true">·</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <VintageButton href="#projetos">
-              Explorar projetos
-            </VintageButton>
+            <div className="mt-9 flex flex-col gap-3 sm:mt-11 sm:flex-row">
+              <LocalizedLink
+                href="/projects"
+                className="inline-flex min-h-12 items-center justify-center gap-3 bg-foreground px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-canvas transition-colors hover:bg-secondary"
+              >
+                {content.projectsCta}
+                <ArrowDownRight size={16} aria-hidden="true" />
+              </LocalizedLink>
 
-            <VintageButton href="#blog" variant="secondary">
-              Abrir diário
-            </VintageButton>
+              <span
+                aria-disabled="true"
+                title={content.resumesUnavailable}
+                className="inline-flex min-h-12 cursor-not-allowed items-center justify-center border border-line-strong px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted"
+              >
+                {content.resumesCta}
+                <span className="sr-only"> — {content.resumesUnavailable}</span>
+              </span>
+            </div>
           </div>
 
-          <MissionPanel />
-        </motion.div>
+          <div className="relative hidden min-h-[34rem] lg:block" aria-hidden="true">
+            <div className="absolute right-[8%] top-[16%] font-mono text-[0.55rem] uppercase tracking-[0.18em] text-muted">
+              <span className="block">RA 13h 26m 47s</span>
+              <span className="mt-1 block">DEC −47° 28′ 46″</span>
+            </div>
+            <div className="absolute bottom-[15%] right-[5%] h-16 w-px bg-line" />
+            <div className="hero-coordinate-rule absolute bottom-[15%] right-[5%] h-px w-36" />
+          </div>
+        </div>
 
-        <Parallax offset={60}>
-          <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.9,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              duration: 1.2,
-            }}
-            className="relative z-10"
+        <div className="grid gap-5 border-t border-line pt-5 sm:grid-cols-[1fr_auto] sm:items-end lg:grid-cols-[1fr_auto_1fr]">
+          <p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-muted">
+            {content.coordinates}
+          </p>
+
+          <div className="hidden items-center gap-5 lg:flex" aria-hidden="true">
+            <span className="h-7 w-7 rounded-full border border-line-strong" />
+            <span className="h-2 w-2 rotate-45 border border-line-strong" />
+            <span className="h-7 w-7 rounded-full border border-line-strong before:mx-auto before:block before:h-full before:w-px before:bg-line" />
+          </div>
+
+          <aside
+            className="flex max-w-sm items-start gap-3 border border-line-strong bg-surface/88 p-4 shadow-[0_16px_50px_rgb(0_0_0_/_0.42)] sm:min-w-72 lg:mb-2 lg:justify-self-end"
+            aria-label={content.nyxRole}
           >
-            <motion.div
-              animate={{
-                y: [0, -12, 0],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="cartoon-ink space-glow relative mx-auto aspect-square max-w-md rounded-[3rem] p-8"
+            <span
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line-strong font-mono text-[0.55rem] font-semibold tracking-[0.1em] text-foreground"
+              aria-hidden="true"
             >
-              <div className="absolute -left-8 top-10 rounded-full border-[3px] border-[#f4e7c5]/70 bg-[#080706] px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-[#d8b46a] shadow-[4px_4px_0_rgba(8,7,6,0.9)]">
-                TRANSMISSÃO ORBITAL
-              </div>
-
-              <div className="relative z-10 flex h-full flex-col items-center justify-center rounded-[2rem] border-[3px] border-[#f4e7c5]/18 bg-[#080706]/40 text-center">
-                <motion.div
-                  animate={{
-                    rotate: 360,
-                  }}
-                  transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="rubber-orbit mb-8 h-28 w-28 rounded-full"
-                />
-
-                <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#9f875f]">
-                  DEVELOPMENT • SPACE • LIVE
-                </p>
-
-                <h2
-                  className="cartoon-title mt-4 text-4xl font-black uppercase tracking-[-0.04em] text-[#f4e7c5]"
-                  style={{
-                    fontFamily: "Cinzel, serif",
-                  }}
-                >
-                  ESTÚDIO ORBITAL
-                </h2>
-
-                <p className="mt-4 max-w-xs text-sm leading-6 text-[#f4e7c5]/60">
-                  Um espaço para criar projetos, transmitir ideias, estudar
-                  tecnologia e construir algo memorável.
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        </Parallax>
+              NX
+            </span>
+            <span>
+              <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-foreground">
+                {content.nyxRole}
+              </span>
+              <span className="mt-1.5 block text-xs leading-5 text-secondary">
+                {content.nyxStatus}
+              </span>
+            </span>
+          </aside>
+        </div>
       </div>
     </section>
   );

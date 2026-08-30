@@ -11,15 +11,24 @@ import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SocialSection } from "@/components/sections/SocialSection";
 import { SpaceLabSection } from "@/components/sections/SpaceLabSection";
 import { createLocalizedMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/content/site";
+import { isLocale } from "@/lib/i18n";
+import { notFound } from "next/navigation";
 
 export const generateMetadata = createLocalizedMetadata("/");
 
-export default function Home() {
+type HomeProps = { params: Promise<{ locale: string }> };
+
+export default async function Home({ params }: HomeProps) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  const content = getSiteContent(locale);
+
   return (
     <main className="min-h-screen overflow-hidden">
       <Header />
 
-      <HeroSection />
+      <HeroSection content={content.hero} />
 
       <LiveSection />
 
