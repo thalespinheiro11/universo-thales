@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
 import { ContactGrid } from "@/components/contact/ContactGrid";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
@@ -7,6 +7,9 @@ import { Container } from "@/components/ui/Container";
 import { OrbitalDecoration } from "@/components/ui/OrbitalDecoration";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionBadge } from "@/components/ui/SectionBadge";
+import { createLocalizedMetadata } from "@/lib/seo";
+
+export const generateMetadata = createLocalizedMetadata("/contact");
 
 export default function ContactPage() {
   return (

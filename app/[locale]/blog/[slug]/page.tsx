@@ -1,6 +1,14 @@
-import Link from "next/link";
+import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/data/blog";
+import {
+  getBlogPostLocales,
+  getBlogPosts,
+  getBlogPostTranslation,
+} from "@/content/blog";
+import { defaultLocale, isLocale } from "@/lib/i18n";
+import { localizedLanguages, localizedUrl } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Constellation } from "@/components/ui/Constellation";
@@ -12,6 +20,7 @@ import { VintageButton } from "@/components/ui/VintageButton";
 
 type BlogPostPageProps = {
   params: Promise<{
+    locale: string;
     slug: string;
   }>;
 };
@@ -23,15 +32,17 @@ export function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
 
-  const post = blogPosts.find((item) => item.slug === slug);
+  const localizedPosts = getBlogPosts(locale);
+  const post = localizedPosts.find((item) => item.slug === slug);
 
   if (!post) {
     notFound();
   }
 
-  const postNumber = blogPosts.findIndex((item) => item.slug === slug) + 1;
+  const postNumber = localizedPosts.findIndex((item) => item.slug === slug) + 1;
 
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -145,4 +156,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <Footer />
     </main>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) return {};
+
+  const post = getBlogPosts(locale).find((item) => item.slug === slug);
+  if (!post) return {};
+
+  const hasTranslation = Boolean(getBlogPostTranslation(slug, locale));
+  const canonicalLocale = hasTranslation ? locale : defaultLocale;
+  const path = `/blog/${slug}`;
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: {
+      canonical: localizedUrl(canonicalLocale, path),
+      languages: localizedLanguages(path, getBlogPostLocales(slug)),
+    },
+    robots: { index: hasTranslation, follow: true },
+  };
 }

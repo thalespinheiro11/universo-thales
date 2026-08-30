@@ -1,19 +1,35 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Atmosphere } from "@/components/layout/Atmosphere";
 import { FloatingContact } from "@/components/ui/FloatingContact";
 import { SpaceBackground } from "@/components/ui/SpaceBackground";
+import { siteConfig } from "@/config/site";
+import { getSiteContent } from "@/content/site";
 import { siteData } from "@/data/site";
-import "./globals.css";
+import { contentLocales, isLocale, locales } from "@/lib/i18n";
+import "../globals.css";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://thalespinheiro.com.br"),
+type LocaleLayoutProps = {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({
+  params,
+}: LocaleLayoutProps): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+
+  const content = getSiteContent(locale);
+  return {
+  metadataBase: new URL(siteConfig.url),
 
   title: {
-    default: `${siteData.name} | Universo Pessoal Digital`,
+    default: `${siteData.name} | ${content.metadata.title}`,
     template: `%s | ${siteData.name}`,
   },
 
-  description: siteData.description,
+  description: content.metadata.description,
 
   keywords: [
     "Thales Pinheiro",
@@ -41,10 +57,9 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: "website",
-    locale: "pt_BR",
-    url: "https://thalespinheiro.com.br",
-    title: `${siteData.name} | Universo Pessoal Digital`,
-    description: siteData.description,
+    locale: locale === "pt-br" ? "pt_BR" : "en",
+    title: `${siteData.name} | ${content.metadata.title}`,
+    description: content.metadata.description,
     siteName: "Universo Thales",
 
     images: [
@@ -59,8 +74,8 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: `${siteData.name} | Universo Pessoal Digital`,
-    description: siteData.description,
+    title: `${siteData.name} | ${content.metadata.title}`,
+    description: content.metadata.description,
     creator: siteData.handle,
     images: ["/images/og-image.jpg"],
   },
@@ -69,15 +84,22 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-};
+  };
+}
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  params,
+}: LocaleLayoutProps) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+
   return (
-    <html lang="pt-BR" data-scroll-behavior="smooth">
+    <html lang={contentLocales[locale]} data-scroll-behavior="smooth">
       <body>
         <SpaceBackground />
 

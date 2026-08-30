@@ -1,5 +1,7 @@
+import { siteConfig } from "@/config/site";
+
 export const siteData = {
-  name: "Thales Pinheiro",
+  name: siteConfig.name,
 
   handle: "@thaless.pinheiro",
 
@@ -17,14 +19,16 @@ export const siteData = {
     "Construir tecnologia, conteúdo e experiências digitais que misturem criatividade, exploração e propósito.",
 
   social: {
-    twitch: "https://twitch.tv/o_boja",
+    github: siteConfig.social.github,
 
-    instagram: "https://instagram.com/thaless.pinheiro",
+    twitch: siteConfig.social.twitch,
 
-    astronomy: "https://instagram.com/astronomy.tech",
+    instagram: siteConfig.social.instagram,
 
-    email: "contato@thalespinheiro.com.br",
+    astronomy: siteConfig.social.astronomy,
 
-    whatsapp: "https://wa.me/5547996922797",
+    email: siteConfig.social.email,
+
+    whatsapp: siteConfig.social.whatsapp,
   },
 };

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Constellation } from "@/components/ui/Constellation";
@@ -7,6 +7,9 @@ import { OrbitalDecoration } from "@/components/ui/OrbitalDecoration";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionBadge } from "@/components/ui/SectionBadge";
 import { VintageButton } from "@/components/ui/VintageButton";
+import { createLocalizedMetadata } from "@/lib/seo";
+
+export const generateMetadata = createLocalizedMetadata("/astronomy");
 
 export default function AstronomyPage() {
   return (

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
 import { projects } from "@/data/projects";
 import { Container } from "../ui/Container";
 import { Reveal } from "../ui/Reveal";

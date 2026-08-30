@@ -10,6 +10,9 @@ import { MediaSection } from "@/components/sections/MediaSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SocialSection } from "@/components/sections/SocialSection";
 import { SpaceLabSection } from "@/components/sections/SpaceLabSection";
+import { createLocalizedMetadata } from "@/lib/seo";
+
+export const generateMetadata = createLocalizedMetadata("/");
 
 export default function Home() {
   return (

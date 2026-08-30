@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Universo Thales
 
-## Getting Started
+Portfólio pessoal e profissional de Thales Pinheiro. O produto reúne apresentação, projetos estruturados, blog, contato e conteúdos ligados a tecnologia e astronomia, preservando uma identidade visual espacial já existente.
 
-First, run the development server:
+Produção: [thalespinheiro.com.br](https://thalespinheiro.com.br)
+
+## Stack
+
+- Next.js 16 com App Router e React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- ESLint
+
+## Requisitos e execução
+
+- Node.js 20.9 ou superior
+- npm (o lockfile oficial é `package-lock.json`)
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra `http://localhost:3000`. A rota sem locale redireciona para `/pt-br`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Scripts disponíveis:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`: servidor de desenvolvimento;
+- `npm run build`: build de produção;
+- `npm run start`: executa o build;
+- `npm run lint`: análise com ESLint.
 
-## Learn More
+Para verificar tipos separadamente, execute `npx tsc --noEmit`.
 
-To learn more about Next.js, take a look at the following resources:
+## Estrutura principal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `app/[locale]/`: páginas localizadas do App Router;
+- `components/`: layout, seções e componentes reutilizáveis;
+- `content/`: conteúdo localizado e registros que relacionam traduções;
+- `data/`: conteúdo estruturado legado de projetos e blog;
+- `config/`: configurações globais estáveis;
+- `lib/`: helpers e constantes;
+- `public/`: imagens e documentos públicos;
+- `docs/`: produto, arquitetura, i18n e roadmap.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Internacionalização
 
-## Deploy on Vercel
+Os locales públicos são `pt-br` e `en`, sempre explícitos na URL. PT-BR é o fallback. A solução usa recursos nativos do App Router, sem biblioteca externa: segmento dinâmico, validação de locale, conteúdo carregado no servidor e `proxy.ts` para redirecionar URLs sem locale.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Projetos e artigos têm uma identidade compartilhada e traduções opcionais. Enquanto uma tradução não existe, a versão PT-BR é usada; a migração completa do conteúdo será incremental. Consulte [`docs/i18n.md`](docs/i18n.md).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Documentação e deploy
+
+As decisões atuais estão em `docs/`. Leia também `AGENTS.md` antes de alterar o projeto.
+
+O projeto gera um build Next.js padrão e está preparado para plataformas compatíveis, como Vercel. Configurações específicas da conta e o fluxo de publicação não estão versionados neste repositório. O domínio canônico é `https://thalespinheiro.com.br`.

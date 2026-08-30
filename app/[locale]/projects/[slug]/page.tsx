@@ -1,6 +1,14 @@
-import Link from "next/link";
+import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
+import {
+  getProjectLocales,
+  getProjects,
+  getProjectTranslation,
+} from "@/content/projects";
+import { defaultLocale, isLocale } from "@/lib/i18n";
+import { localizedLanguages, localizedUrl } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Constellation } from "@/components/ui/Constellation";
@@ -12,6 +20,7 @@ import { VintageButton } from "@/components/ui/VintageButton";
 
 type ProjectPageProps = {
   params: Promise<{
+    locale: string;
     slug: string;
   }>;
 };
@@ -23,15 +32,17 @@ export function generateStaticParams() {
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
 
-  const project = projects.find((item) => item.slug === slug);
+  const localizedProjects = getProjects(locale);
+  const project = localizedProjects.find((item) => item.slug === slug);
 
   if (!project) {
     notFound();
   }
 
-  const missionNumber = projects.findIndex((item) => item.slug === slug) + 1;
+  const missionNumber = localizedProjects.findIndex((item) => item.slug === slug) + 1;
 
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -200,4 +211,28 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <Footer />
     </main>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) return {};
+
+  const project = getProjects(locale).find((item) => item.slug === slug);
+  if (!project) return {};
+
+  const hasTranslation = Boolean(getProjectTranslation(slug, locale));
+  const canonicalLocale = hasTranslation ? locale : defaultLocale;
+  const path = `/projects/${slug}`;
+
+  return {
+    title: project.title,
+    description: project.shortDescription,
+    alternates: {
+      canonical: localizedUrl(canonicalLocale, path),
+      languages: localizedLanguages(path, getProjectLocales(slug)),
+    },
+    robots: { index: hasTranslation, follow: true },
+  };
 }
