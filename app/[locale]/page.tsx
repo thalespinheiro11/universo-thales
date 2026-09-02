@@ -32,7 +32,7 @@ export default async function Home({ params }: HomeProps) {
 
       <LiveSection />
 
-      <FeaturedProjectSection />
+  <FeaturedProjectSection locale={locale} />
 
       <ProjectsSection />
 

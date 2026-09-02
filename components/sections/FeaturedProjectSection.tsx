@@ -1,95 +1,163 @@
+import { getProjectCardContent, type ProjectCard } from "@/content/projects";
 import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
-import { projects } from "@/data/projects";
+import type { Locale } from "@/lib/i18n";
 import { Container } from "../ui/Container";
 import { Reveal } from "../ui/Reveal";
 import { SectionBadge } from "../ui/SectionBadge";
 import { VintageButton } from "../ui/VintageButton";
 
-export function FeaturedProjectSection() {
-  const featuredProject = projects.find((project) => project.slug === "noxcare");
+type FeaturedProjectSectionProps = { locale: Locale };
 
-  if (!featuredProject) {
-    return null;
-  }
+function ProjectVisual({ project }: { project: ProjectCard }) {
+  return (
+    <div
+      aria-hidden="true"
+      className="section-grid relative flex min-h-64 items-end overflow-hidden border border-line bg-surface p-6 sm:min-h-72"
+    >
+      <div className="absolute -right-12 -top-12 h-56 w-56 rounded-full border border-line-strong/50" />
+      <div className="absolute right-8 top-8 h-36 w-36 rounded-full border border-dashed border-line-strong/40" />
+      <div className="absolute inset-x-6 top-1/2 border-t border-line" />
+      <div className="absolute bottom-8 left-1/2 h-36 border-l border-line" />
+      <div className="relative z-10 w-full border-t border-line-strong pt-4">
+        <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-muted">
+          Visual register // {project.slug}
+        </p>
+        <p className="mt-2 font-display text-2xl uppercase text-foreground sm:text-3xl">
+          {project.title}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function ProjectCard({
+  project,
+  explore,
+  featured = false,
+}: {
+  project: ProjectCard;
+  explore: string;
+  featured?: boolean;
+}) {
+  const card = (
+    <article
+      className={`group relative h-full overflow-hidden border border-line bg-surface/80 p-6 transition-colors duration-300 hover:border-line-strong ${
+        featured
+          ? "grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.85fr_1.15fr] lg:p-10"
+          : "flex flex-col"
+      }`}
+    >
+      <div
+        className={
+          featured ? "flex flex-col justify-between" : "flex flex-1 flex-col"
+        }
+      >
+        <div>
+          <div className="flex items-center justify-between gap-4">
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-muted">
+              {project.mission}
+            </p>
+            <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted">
+              {project.status}
+            </span>
+          </div>
+          <h3
+            className={`mt-8 font-display uppercase leading-none text-foreground ${
+              featured ? "text-4xl sm:text-5xl" : "text-3xl"
+            }`}
+          >
+            {project.title}
+          </h3>
+          <div className="mt-6 h-px w-20 bg-line-strong" />
+          <p className="mt-6 text-sm leading-7 text-secondary">
+            {project.description}
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
+            {project.role}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.stack.map((item) => (
+              <span
+                key={item}
+                className="border border-line px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-secondary"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          {project.href ? (
+            <Link
+              href={project.href}
+              className="mt-8 inline-flex min-h-11 items-center border-b border-foreground pb-2 text-xs font-bold uppercase tracking-[0.18em] text-foreground transition-colors hover:border-secondary hover:text-secondary"
+            >
+              {explore} <span className="ml-3" aria-hidden="true">→</span>
+            </Link>
+          ) : (
+            <span className="mt-8 inline-flex min-h-11 items-center border-b border-line-strong pb-2 text-xs font-bold uppercase tracking-[0.18em] text-secondary">
+              {explore} <span className="ml-3" aria-hidden="true">→</span>
+            </span>
+          )}
+        </div>
+      </div>
+      <ProjectVisual project={project} />
+    </article>
+  );
+
+  return card;
+}
+
+export function FeaturedProjectSection({
+  locale,
+}: FeaturedProjectSectionProps) {
+  const content = getProjectCardContent(locale);
+  const [featuredProject, ...secondaryProjects] = content.cards;
 
   return (
-    <section id="projeto-em-foco" className="relative overflow-hidden py-28">
+    <section
+      id="projetos-em-destaque"
+      className="relative overflow-hidden py-28"
+      aria-labelledby="featured-projects-title"
+    >
       <Container>
         <Reveal>
-          <div className="cartoon-ink relative overflow-hidden rounded-[2.5rem] p-8 md:p-12">
-            <div className="absolute right-[-120px] top-[-120px] h-80 w-80 rounded-full border-[3px] border-dashed border-[#d8b46a]/20" />
-            <div className="absolute bottom-[-140px] left-[-140px] h-96 w-96 rounded-full bg-[#d8b46a]/5 blur-3xl" />
+          <div className="mb-12 max-w-2xl">
+            <SectionBadge>{content.eyebrow}</SectionBadge>
+            <h2
+              id="featured-projects-title"
+              className="mt-8 max-w-xl font-display text-4xl uppercase leading-none text-foreground sm:text-5xl"
+            >
+              {content.title}
+            </h2>
+            <p className="mt-6 text-base leading-7 text-secondary">
+              {content.intro}
+            </p>
+          </div>
+        </Reveal>
 
-            <div className="relative z-10 grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-              <div>
-                <SectionBadge>Projeto em foco</SectionBadge>
+        <Reveal delay={0.12}>
+          <ProjectCard
+            project={featuredProject}
+            explore={content.explore}
+            featured
+          />
+        </Reveal>
 
-                <p className="mt-8 text-xs font-black uppercase tracking-[0.35em] text-[#9f875f]">
-                  Missão principal // Sistema orbital 001
-                </p>
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          {secondaryProjects.map((project, index) => (
+            <Reveal key={project.slug} delay={0.18 + index * 0.08}>
+              <ProjectCard project={project} explore={content.explore} />
+            </Reveal>
+          ))}
+        </div>
 
-                <h2 className="cartoon-title mt-4 text-5xl font-black uppercase leading-none tracking-[-0.06em] text-[#f4e7c5] md:text-7xl">
-                  {featuredProject.title}
-                </h2>
-
-                <div className="vintage-rule mt-6" />
-
-                <p className="mt-6 max-w-2xl text-lg leading-8 text-[#f4e7c5]/70">
-                  {featuredProject.description}
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {featuredProject.stack.map((item) => (
-                    <span key={item} className="cartoon-badge">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                  <VintageButton href={`/projects/${featuredProject.slug}`}>
-                    Abrir missão
-                  </VintageButton>
-
-                  <VintageButton href="/projects" variant="secondary">
-                    Ver todos
-                  </VintageButton>
-                </div>
-              </div>
-
-              <div className="relative rounded-[2rem] border-[3px] border-[#f4e7c5]/25 bg-[#080706]/45 p-6 shadow-[5px_5px_0_rgba(8,7,6,0.8)]">
-                <p className="cartoon-badge">
-                  Arquivo da missão
-                </p>
-
-                <div className="mt-8 grid gap-5">
-                  <div className="rounded-2xl border-2 border-[#f4e7c5]/15 bg-[#f4e7c5]/5 p-5">
-                    <p className="text-xs uppercase tracking-[0.25em] text-[#9f875f]">
-                      Status
-                    </p>
-                    <p className="mt-2 text-xl font-black uppercase text-[#f4e7c5]">
-                      {featuredProject.status}
-                    </p>
-                  </div>
-
-                  <div className="rounded-2xl border-2 border-[#f4e7c5]/15 bg-[#f4e7c5]/5 p-5">
-                    <p className="text-xs uppercase tracking-[0.25em] text-[#9f875f]">
-                      Objetivo
-                    </p>
-                    <p className="mt-3 text-base leading-7 text-[#f4e7c5]/70">
-                      {featuredProject.objective}
-                    </p>
-                  </div>
-
-                  <Link
-                    href={`/projects/${featuredProject.slug}`}
-                    className="cartoon-button rounded-2xl bg-[#d8b46a]/10 p-5 text-sm font-black uppercase tracking-[0.2em] text-[#f4e7c5] transition"
-                  >
-                    Ler arquivo completo →
-                  </Link>
-                </div>
-              </div>
-            </div>
+        <Reveal delay={0.3}>
+          <div className="mt-12">
+            <VintageButton href="/projects" variant="secondary">
+              {content.viewAll} <span aria-hidden="true">→</span>
+            </VintageButton>
           </div>
         </Reveal>
       </Container>

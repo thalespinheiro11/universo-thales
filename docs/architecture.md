@@ -20,6 +20,8 @@ Projetos e artigos mantêm slugs estáveis como identidade compartilhada. Os reg
 
 Campos futuros de estudo de caso devem ser opcionais enquanto o conteúdo legado for migrado. CMS, banco de dados, autenticação e painel administrativo não fazem parte da arquitetura atual.
 
+Cards resumidos da Home são mantidos separadamente dos registros de cases em `content/projects.ts`. Uma tradução EN de card não equivale a uma tradução completa de case: ela não deve criar entrada no sitemap nem tornar a rota interna indexável. Apenas traduções registradas em `localizedProjects` participam da política de SEO das páginas de projeto.
+
 ## Configuração e documentos
 
 Valores estáveis e reutilizados ficam em `config/site.ts`. Os paths esperados dos currículos estão centralizados, mas nenhum PDF fictício deve ser criado. A presença física dos arquivos deve ser verificada antes de expor links na interface.
