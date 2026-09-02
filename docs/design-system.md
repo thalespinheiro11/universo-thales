@@ -41,7 +41,7 @@ Motion deve comunicar estado ou hierarquia. Header e Hero não dependem de anima
 
 ## Elementos espaciais
 
-A Lua do Hero é um SVG inline autoral com crateras, hachuras e linhas topográficas. Órbitas, estrelas e coordenadas são decorativas, possuem baixa densidade em telas menores e ficam fora da árvore de acessibilidade.
+A Lua do Hero é um asset raster contextual com crateras, hachuras e linhas topográficas. Ela permanece exclusiva do Hero e desaparece gradualmente na base por máscara CSS. Órbitas, estrelas e coordenadas são decorativas, possuem baixa densidade em telas menores e ficam fora da árvore de acessibilidade.
 
 Não usar fotografias espaciais ou assets de terceiros sem licença e aprovação. Glows, partículas e gradientes coloridos não fazem parte desta direção.
 

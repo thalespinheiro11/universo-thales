@@ -5,7 +5,6 @@ import { BlogPreviewSection } from "@/components/sections/BlogPreviewSection";
 import { FeaturedProjectSection } from "@/components/sections/FeaturedProjectSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { JourneySection } from "@/components/sections/JourneySection";
-import { LiveSection } from "@/components/sections/LiveSection";
 import { MediaSection } from "@/components/sections/MediaSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SocialSection } from "@/components/sections/SocialSection";
@@ -30,9 +29,7 @@ export default async function Home({ params }: HomeProps) {
 
       <HeroSection content={content.hero} />
 
-      <LiveSection />
-
-  <FeaturedProjectSection locale={locale} />
+        <FeaturedProjectSection locale={locale} />
 
       <ProjectsSection />
 

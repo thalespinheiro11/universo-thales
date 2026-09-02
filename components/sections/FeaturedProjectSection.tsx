@@ -3,7 +3,6 @@ import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
 import type { Locale } from "@/lib/i18n";
 import { Container } from "../ui/Container";
 import { Reveal } from "../ui/Reveal";
-import { SectionBadge } from "../ui/SectionBadge";
 import { VintageButton } from "../ui/VintageButton";
 
 type FeaturedProjectSectionProps = { locale: Locale };
@@ -124,7 +123,13 @@ export function FeaturedProjectSection({
       <Container>
         <Reveal>
           <div className="mb-12 max-w-2xl">
-            <SectionBadge>{content.eyebrow}</SectionBadge>
+            <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+              <span className="font-mono" aria-hidden="true">
+                02 //
+              </span>
+              <span className="h-px w-12 bg-line-strong" aria-hidden="true" />
+              <span>{content.eyebrow}</span>
+            </div>
             <h2
               id="featured-projects-title"
               className="mt-8 max-w-xl font-display text-4xl uppercase leading-none text-foreground sm:text-5xl"

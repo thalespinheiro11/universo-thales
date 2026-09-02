@@ -33,3 +33,5 @@ Os cards usam placeholders visuais intencionais até que assets reais sejam apro
 Backup Monitor deve ser apresentado publicamente apenas como ferramenta interna desenvolvida para um ambiente corporativo. Informatech, clientes, infraestrutura, caminhos, diretórios, IPs, nomes internos, dados operacionais e credenciais não podem aparecer em conteúdo novo. O artigo legado ainda precisa ser anonimizado antes de um próximo deploy público.
 
 Astronomy Tickets está fora da exposição pública e não deve ser adicionado à Home, aos destaques, à listagem pública, ao sitemap ou a conteúdo novo. Essa decisão não se aplica ao projeto distinto chamado Astronomy.
+
+Na Home, a hierarquia profissional posiciona Projetos em Destaque imediatamente após o Hero. A antiga seção de Transmissões não é renderizada nessa página, embora seus componentes, conteúdo e canais continuem disponíveis para outros usos.

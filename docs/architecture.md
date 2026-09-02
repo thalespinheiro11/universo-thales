@@ -22,6 +22,8 @@ Campos futuros de estudo de caso devem ser opcionais enquanto o conteúdo legado
 
 Cards resumidos da Home são mantidos separadamente dos registros de cases em `content/projects.ts`. Uma tradução EN de card não equivale a uma tradução completa de case: ela não deve criar entrada no sitemap nem tornar a rota interna indexável. Apenas traduções registradas em `localizedProjects` participam da política de SEO das páginas de projeto.
 
+A Lua é um elemento contextual exclusivo do Hero e utiliza uma transição gradual para desaparecer antes das regiões de conteúdo subsequentes. Lua, órbitas e marcações do Hero ficam em uma única camada cenográfica mascarada; estrelas e atmosfera neutra ficam na camada global contínua. O asset lunar é carregado com `next/image`, proporção intrínseca preservada e sem comportamento baseado em scroll.
+
 ## Configuração e documentos
 
 Valores estáveis e reutilizados ficam em `config/site.ts`. Os paths esperados dos currículos estão centralizados, mas nenhum PDF fictício deve ser criado. A presença física dos arquivos deve ser verificada antes de expor links na interface.

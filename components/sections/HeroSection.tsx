@@ -12,28 +12,28 @@ export function HeroSection({ content }: HeroSectionProps) {
     <section
       id="inicio"
       aria-labelledby="hero-title"
-      className="hero-starfield relative isolate min-h-[100svh] overflow-hidden border-b border-line bg-canvas px-4 pb-12 pt-28 text-foreground sm:px-6 sm:pb-16 sm:pt-32 lg:px-10 lg:pb-20"
+      className="hero-starfield relative isolate min-h-[100svh] overflow-visible px-4 pb-12 pt-28 text-foreground sm:px-6 sm:pb-16 sm:pt-32 lg:px-10 lg:pb-20"
     >
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="hero-orbit absolute -right-[62vw] top-[16rem] h-[125vw] w-[125vw] sm:-right-[42vw] sm:top-[11rem] lg:-right-[17vw] lg:top-[3rem] lg:h-[74vw] lg:w-[74vw]" />
-        <div className="hero-orbit absolute -right-[34vw] top-[19rem] h-[78vw] w-[110vw] opacity-55 sm:-right-[22vw] lg:-right-[10vw] lg:top-[10rem] lg:h-[46vw] lg:w-[68vw]" />
-        <div className="absolute left-[8%] top-[31%] h-1 w-1 rounded-full bg-foreground shadow-[0_0_0_4px_rgb(243_241_234_/_0.06)]" />
-        <div className="absolute left-[47%] top-[18%] h-1.5 w-1.5 rotate-45 border border-foreground" />
-        <div className="absolute bottom-[18%] left-[42%] h-2 w-2 rounded-full border border-line-strong" />
-      </div>
+      <div className="hero-scenery pointer-events-none absolute inset-x-0 top-0 z-0 h-[calc(100%+8rem)] overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-0">
+          <div className="hero-orbit absolute -right-[62vw] top-[16rem] h-[125vw] w-[125vw] sm:-right-[42vw] sm:top-[11rem] lg:-right-[17vw] lg:top-[3rem] lg:h-[74vw] lg:w-[74vw]" />
+          <div className="hero-orbit absolute -right-[34vw] top-[19rem] h-[78vw] w-[110vw] opacity-55 sm:-right-[22vw] lg:-right-[10vw] lg:top-[10rem] lg:h-[46vw] lg:w-[68vw]" />
+          <div className="absolute left-[8%] top-[31%] h-1 w-1 rounded-full bg-foreground shadow-[0_0_0_4px_rgb(243_241_234_/_0.06)]" />
+          <div className="absolute left-[47%] top-[18%] h-1.5 w-1.5 rotate-45 border border-foreground" />
+          <div className="absolute bottom-[18%] left-[42%] h-2 w-2 rounded-full border border-line-strong" />
+        </div>
 
-      <div
-        className="pointer-events-none absolute -right-[92vw] top-[15rem] z-0 w-[217vw] opacity-30 sm:-right-[45vw] sm:top-[10rem] sm:w-[168vw] sm:opacity-38 lg:-right-[13vw] lg:top-[5rem] lg:w-[93vw] lg:opacity-68 xl:-right-[9vw] xl:w-[87vw] xl:opacity-72"
-        aria-hidden="true"
-      >
-        <Image
-          src="/images/visual/moon-engraving.png"
-          alt=""
-          width={1536}
-          height={1024}
-          sizes="(min-width: 1280px) 87vw, (min-width: 1024px) 93vw, (min-width: 640px) 168vw, 217vw"
-          className="h-auto w-full"
-        />
+        <div className="absolute -right-[10vw] top-[7rem] w-[110vw] opacity-35 sm:right-0 sm:top-[6rem] sm:w-[92vw] sm:opacity-45 lg:right-0 lg:top-[5rem] lg:w-[72vw] lg:opacity-72 xl:right-0 xl:w-[68vw] xl:opacity-76">
+          <Image
+            src="/images/visual/moon-engraving.png?v=3-4-1"
+            alt=""
+            width={1278}
+            height={1230}
+            priority
+            sizes="(min-width: 1280px) 68vw, (min-width: 1024px) 72vw, (min-width: 640px) 92vw, 110vw"
+            className="h-auto w-full"
+          />
+        </div>
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100svh-10rem)] max-w-[90rem] flex-col justify-between">
@@ -106,7 +106,7 @@ export function HeroSection({ content }: HeroSectionProps) {
           </div>
         </div>
 
-        <div className="grid gap-5 border-t border-line pt-5 sm:grid-cols-[1fr_auto] sm:items-end lg:grid-cols-[1fr_auto_1fr]">
+        <div className="grid gap-5 pt-5 sm:grid-cols-[1fr_auto] sm:items-end lg:grid-cols-[1fr_auto_1fr]">
           <p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-muted">
             {content.coordinates}
           </p>

@@ -37,9 +37,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at 68% 8%, rgb(255 255 255 / 0.035), transparent 28rem),
-    var(--color-canvas);
+  background: var(--color-canvas);
   color: var(--color-foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
@@ -280,6 +278,23 @@ body::after {
     radial-gradient(circle at 72% 70%, rgb(243 241 234 / 0.4) 0 1px, transparent 1.5px),
     radial-gradient(circle at 88% 14%, rgb(243 241 234 / 0.7) 0 1px, transparent 1.5px);
   background-size: 22rem 18rem, 26rem 24rem, 31rem 27rem, 28rem 20rem, 35rem 29rem;
+}
+
+.hero-scenery {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 48%,
+    rgb(0 0 0 / 0.5) 62%,
+    transparent 76%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 48%,
+    rgb(0 0 0 / 0.5) 62%,
+    transparent 76%
+  );
 }
 
 .hero-orbit {

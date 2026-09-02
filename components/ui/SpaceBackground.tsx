@@ -13,16 +13,12 @@ const stars = Array.from({ length: 80 }, (_, i) => ({
 export function SpaceBackground() {
   return (
     <div className="pointer-events-none fixed inset-0 overflow-hidden">
-      {/* Nebulosa superior */}
-      <div className="absolute left-1/2 top-0 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-[#d8b46a]/5 blur-3xl" />
+      <div className="absolute left-1/2 top-0 h-175 w-175 -translate-x-1/2 rounded-full bg-foreground/[0.018] blur-3xl" />
 
-      {/* Nebulosa direita */}
-      <div className="absolute right-[-200px] top-[30%] h-[600px] w-[600px] rounded-full bg-[#b88952]/5 blur-3xl" />
+      <div className="absolute -right-50 top-[30%] h-150 w-150 rounded-full bg-foreground/[0.014] blur-3xl" />
 
-      {/* Nebulosa esquerda */}
-      <div className="absolute left-[-200px] bottom-[10%] h-[500px] w-[500px] rounded-full bg-[#f4e7c5]/3 blur-3xl" />
+      <div className="absolute -left-50 bottom-[10%] h-125 w-125 rounded-full bg-foreground/1 blur-3xl" />
 
-      {/* Estrelas */}
       {stars.map((star) => (
         <motion.span
           key={star.id}
@@ -34,7 +30,7 @@ export function SpaceBackground() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute rounded-full bg-[#f4e7c5]"
+          className="absolute rounded-full bg-foreground"
           style={{
             left: star.left,
             top: star.top,
