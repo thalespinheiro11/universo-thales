@@ -78,5 +78,6 @@ export const siteContent = {
     copyright: "All rights reserved.",
     signature: "Made with code, purpose, and coffee.",
     externalLink: "opens in a new tab",
+    floating: "Direct line",
   },
 } as const;

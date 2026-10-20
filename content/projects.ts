@@ -1,4 +1,5 @@
 import { projects } from "@/data/projects";
+import { projectsEn } from "@/data/projects.en";
 import {
   contentLocales,
   locales,
@@ -124,10 +125,13 @@ export type LocalizedProject = {
   translations: Partial<Record<ContentLocale, Project>>;
 };
 
-export const localizedProjects: LocalizedProject[] = projects.map((project) => ({
-  id: project.slug,
-  translations: { "pt-BR": project },
-}));
+export const localizedProjects: LocalizedProject[] = projects.map((project) => {
+  const en = projectsEn.find((item) => item.slug === project.slug);
+  return {
+    id: project.slug,
+    translations: en ? { "pt-BR": project, en } : { "pt-BR": project },
+  };
+});
 
 export function getProjectTranslation(id: string, locale: Locale) {
   const entry = localizedProjects.find((project) => project.id === id);

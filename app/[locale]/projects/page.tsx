@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getPagesContent } from "@/content/pages";
 import { getProjects } from "@/content/projects";
 import { isLocale } from "@/lib/i18n";
 import { Footer } from "@/components/layout/Footer";
@@ -17,6 +18,8 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const projects = getProjects(locale);
+  const pages = getPagesContent(locale);
+  const content = pages.projects;
   return (
     <main className="relative min-h-screen overflow-hidden">
       <Header />
@@ -25,18 +28,18 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
         <Container>
           <Reveal>
             <PageIntro
-              badge="Arquivo de projetos"
-              title="Sistemas, ideias e experimentos em construção."
-              description="Esta página reúne os projetos que fazem parte do meu universo pessoal digital: ferramentas, aplicações, automações, conteúdo, estudos e iniciativas ligadas à Astronomy."
+              badge={content.badge}
+              title={content.title}
+              description={content.description}
             />
           </Reveal>
 
           <Reveal delay={0.15}>
             <StatStrip
               items={[
-                { label: "Total de missões", value: projects.length },
-                { label: "Status geral", value: "Ativo" },
-                { label: "Arquivo", value: "Orbital" },
+                { label: content.totalLabel, value: projects.length },
+                { label: content.statusLabel, value: content.statusValue },
+                { label: content.archiveLabel, value: content.archiveValue },
               ]}
             />
           </Reveal>
@@ -49,6 +52,7 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
                   category={`${project.category} • ${project.status}`}
                   description={project.description}
                   href={`/projects/${project.slug}`}
+                  actionLabel={pages.common.openFile}
                 />
               </Reveal>
             ))}

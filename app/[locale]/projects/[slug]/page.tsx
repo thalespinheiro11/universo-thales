@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
+import { getPagesContent } from "@/content/pages";
 import {
   getProjectLocales,
   getProjects,
@@ -40,6 +41,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const missionNumber = localizedProjects.findIndex((item) => item.slug === slug) + 1;
+  const content = getPagesContent(locale).projectDetail;
 
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -50,15 +52,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <Reveal>
               <PageIntro
-                back={{ href: "/projects", label: "Voltar para projetos" }}
-                badge={`Missão ${String(missionNumber).padStart(3, "0")}`}
+                back={{ href: "/projects", label: content.back }}
+                badge={`${content.mission} ${String(missionNumber).padStart(3, "0")}`}
                 title={project.title}
                 description={project.description}
               >
                 <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                  <VintageButton href="/projects">Todas as missões</VintageButton>
+                  <VintageButton href="/projects">{content.allMissions}</VintageButton>
                   <VintageButton href="/contact" variant="secondary">
-                    Abrir contato
+                    {content.contactCta}
                   </VintageButton>
                 </div>
               </PageIntro>
@@ -67,14 +69,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <Reveal delay={0.12}>
               <aside className="border border-line bg-surface/80 p-6 sm:p-8" aria-labelledby="mission-file-title">
                 <p id="mission-file-title" className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
-                  Arquivo da missão
+                  {content.file}
                 </p>
 
                 <dl className="mt-6 grid gap-px border border-line bg-line">
                   {[
-                    { label: "Status", value: project.status },
-                    { label: "Ano", value: project.year },
-                    { label: "Categoria", value: project.category },
+                    { label: content.status, value: project.status },
+                    { label: content.year, value: project.year },
+                    { label: content.category, value: project.category },
                   ].map((item) => (
                     <div key={item.label} className="bg-canvas p-5">
                       <dt className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
@@ -87,7 +89,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   ))}
                   <div className="bg-canvas p-5">
                     <dt className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
-                      Stack / Ferramentas
+                      {content.stack}
                     </dt>
                     <dd className="mt-4 flex flex-wrap gap-2">
                       {project.stack.map((item) => (
@@ -108,7 +110,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <Reveal delay={0.18}>
             <section className="mt-16 border-l border-line-strong pl-6 sm:pl-8" aria-labelledby="mission-objective-title">
               <h2 id="mission-objective-title" className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
-                Objetivo da missão
+                {content.objective}
               </h2>
               <p className="mt-6 max-w-4xl text-lg leading-9 text-foreground sm:text-xl sm:leading-10">
                 {project.objective}
@@ -118,8 +120,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           <div className="mt-16 grid gap-6 lg:grid-cols-2">
             {[
-              { title: "Aprendizados registrados", items: project.learnings },
-              { title: "Próximos passos", items: project.nextSteps },
+              { title: content.learnings, items: project.learnings },
+              { title: content.nextSteps, items: project.nextSteps },
             ].map((group, groupIndex) => (
               <Reveal key={group.title} delay={0.1 + groupIndex * 0.1}>
                 <section className="h-full border border-line bg-surface/80 p-6 sm:p-8">

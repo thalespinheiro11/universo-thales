@@ -6,6 +6,8 @@ type VintageCardProps = {
   description: string;
   category?: string;
   href?: string;
+  actionLabel?: string;
+  lang?: string;
 };
 
 export function VintageCard({
@@ -13,9 +15,11 @@ export function VintageCard({
   description,
   category,
   href,
+  actionLabel = "Abrir arquivo",
+  lang,
 }: VintageCardProps) {
   return (
-    <article className="group relative flex h-full flex-col border border-line bg-surface/80 p-6 transition-colors duration-300 focus-within:border-line-strong hover:border-line-strong">
+    <article lang={lang} className="group relative flex h-full flex-col border border-line bg-surface/80 p-6 transition-colors duration-300 focus-within:border-line-strong hover:border-line-strong">
       {category && (
         <p className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-muted">
           {category}
@@ -40,7 +44,7 @@ export function VintageCard({
 
       {href && (
         <p className="mt-6 inline-flex items-center gap-2 border-t border-line pt-4 text-xs font-bold uppercase tracking-[0.16em] text-foreground" aria-hidden="true">
-          Abrir arquivo
+          {actionLabel}
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
         </p>
       )}

@@ -1,54 +1,29 @@
+import type { PagesContent } from "@/content/pages";
 import { contactLinks } from "@/data/contact";
 import { ContactCard } from "./ContactCard";
 
-const contacts = [
-  {
-    label: "LinkedIn",
-    value: "Thales Pinheiro",
-    href: contactLinks.linkedin,
-    description:
-      "Trajetória profissional, experiências e conexões para oportunidades de trabalho.",
-  },
-  {
-    label: "Twitch",
-    value: "o_boja",
-    href: contactLinks.twitch,
-    description:
-      "Canal principal para lives, construção de projetos e bastidores em tempo real.",
-  },
-  {
-    label: "Instagram pessoal",
-    value: "@thaless.pinheiro",
-    href: contactLinks.instagram,
-    description:
-      "Registros pessoais, rotina criativa, tecnologia e fragmentos da jornada.",
-  },
-  {
-    label: "Astronomy",
-    value: "@astronomy.tech",
-    href: contactLinks.astronomy,
-    description:
-      "Laboratório criativo de tecnologia, design, conteúdo e experiências digitais.",
-  },
-  {
-    label: "Email",
-    value: "Contato",
-    href: `mailto:${contactLinks.email}`,
-    description:
-      "Canal direto para propostas, projetos, parcerias e conversas profissionais.",
-  },
-];
+type ContactGridProps = {
+  channels: PagesContent["contact"]["channels"];
+};
 
-export function ContactGrid() {
+const channelOrder = [
+  ["linkedin", contactLinks.linkedin],
+  ["twitch", contactLinks.twitch],
+  ["instagram", contactLinks.instagram],
+  ["astronomy", contactLinks.astronomy],
+  ["email", `mailto:${contactLinks.email}`],
+] as const;
+
+export function ContactGrid({ channels }: ContactGridProps) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      {contacts.map((contact, index) => (
-        <div key={contact.label} className={index === 0 ? "md:col-span-2" : undefined}>
+      {channelOrder.map(([key, href], index) => (
+        <div key={key} className={index === 0 ? "md:col-span-2" : undefined}>
           <ContactCard
-            label={contact.label}
-            value={contact.value}
-            href={contact.href}
-            description={contact.description}
+            label={channels[key].label}
+            value={channels[key].value}
+            href={href}
+            description={channels[key].description}
           />
         </div>
       ))}
