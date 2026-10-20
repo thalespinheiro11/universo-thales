@@ -15,7 +15,7 @@ export const siteContent = {
     menuClose: "Fechar menu",
     menuLabel: "Navegação principal",
     languageLabel: "Selecionar idioma",
-    unavailable: "Em breve",
+    resumeHint: "PDF, abre em nova aba",
   },
   hero: {
     eyebrow: "Desenvolvedor de software",
@@ -26,7 +26,6 @@ export const siteContent = {
     stack: ["JavaScript", "TypeScript", "React", "Next.js", "Node.js"],
     projectsCta: "Ver projetos",
     resumesCta: "Currículos",
-    resumesUnavailable: "Currículos em preparação",
     nyxRole: "Nyx // Oficial de Navegação",
     nyxStatus: "Sistemas operacionais. Rota estabelecida.",
     coordinates: "Órbita terrestre // Setor 026",
@@ -66,10 +65,12 @@ export const siteContent = {
     title: "Aberto a oportunidades profissionais",
     description: "Vamos construir algo incrível juntos.",
     resumes: [
-      { label: "Currículo PT-BR", lang: "pt-BR" },
-      { label: "Currículo EN", lang: "en" },
+      { label: "Currículo PT-BR", lang: "pt-BR", fileName: "Thales-Pinheiro-Curriculo-PT-BR.pdf" },
+      { label: "Currículo EN", lang: "en", fileName: "Thales-Pinheiro-Resume-EN.pdf" },
     ],
-    resumesUnavailable: "Em preparação",
+    view: "Visualizar",
+    download: "Baixar",
+    newTab: "abre em nova aba",
   },
   contact: {
     eyebrow: "Contato",

@@ -1,4 +1,4 @@
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, FileText } from "lucide-react";
 import Image from "next/image";
 import { LocalizedLink } from "@/components/i18n/LocalizedLink";
 import { getSiteContent } from "@/content/site";
@@ -85,14 +85,13 @@ export function HeroSection({ content }: HeroSectionProps) {
                 <ArrowDownRight size={16} aria-hidden="true" />
               </LocalizedLink>
 
-              <span
-                aria-disabled="true"
-                title={content.resumesUnavailable}
-                className="inline-flex min-h-12 cursor-not-allowed items-center justify-center border border-line-strong px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted"
+              <a
+                href="#disponibilidade"
+                className="inline-flex min-h-12 items-center justify-center gap-3 border border-line-strong px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-foreground transition-colors hover:bg-foreground hover:text-canvas"
               >
                 {content.resumesCta}
-                <span className="sr-only"> — {content.resumesUnavailable}</span>
-              </span>
+                <FileText size={16} strokeWidth={1.5} aria-hidden="true" />
+              </a>
             </div>
           </div>
 

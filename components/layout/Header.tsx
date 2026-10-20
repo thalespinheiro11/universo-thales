@@ -5,8 +5,10 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { LocalizedLink } from "@/components/i18n/LocalizedLink";
+import { siteConfig } from "@/config/site";
 import { getSiteContent } from "@/content/site";
 import {
+  contentLocales,
   getLocaleFromPathname,
   switchLocalePath,
   type Locale,
@@ -23,6 +25,7 @@ export function Header() {
   const pathname = usePathname();
   const locale = getLocaleFromPathname(pathname);
   const content = getSiteContent(locale);
+  const resumeHref = siteConfig.documents.resumes[contentLocales[locale]];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
@@ -107,13 +110,15 @@ export function Header() {
             hrefFor={languageHref}
           />
 
-          <span
-            aria-disabled="true"
-            title={`${content.navigation.resume} — ${content.navigation.unavailable}`}
-            className="hidden cursor-not-allowed border border-line px-4 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.14em] text-muted lg:inline-flex"
+          <a
+            href={resumeHref}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden border border-line-strong px-4 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.14em] text-foreground transition-colors hover:bg-foreground hover:text-canvas lg:inline-flex"
           >
             {content.navigation.resume}
-          </span>
+            <span className="sr-only"> ({content.navigation.resumeHint})</span>
+          </a>
 
           <button
             ref={menuButtonRef}
@@ -160,9 +165,17 @@ export function Header() {
             </nav>
 
             <div className="mt-auto border-t border-line pt-6">
-              <p className="text-[0.62rem] uppercase tracking-[0.2em] text-muted">
-                {content.navigation.resume}: {content.navigation.unavailable}
-              </p>
+              <a
+                href={resumeHref}
+                target="_blank"
+                rel="noreferrer"
+                className="flex min-h-12 items-center justify-between border border-line-strong px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-foreground"
+              >
+                {content.navigation.resume}
+                <span className="font-mono text-[0.58rem] tracking-[0.14em] text-muted">
+                  {content.navigation.resumeHint}
+                </span>
+              </a>
             </div>
           </div>
         </div>

@@ -47,3 +47,9 @@ Blog / Registros usa uma seleção explícita em `content/blog.ts`, sem o artigo
 ## Incremento #05: páginas internas em inglês
 
 Os textos de Sobre, Projetos, Blog, Contato, Astronomy e os rótulos das páginas de projeto e artigo ficam em `content/<locale>/pages.ts`. Os cinco estudos de caso têm tradução em `data/projects.en.ts`, registrada como `translations.en`. Os artigos do blog continuam apenas em PT-BR; no `/en`, aparecem com `lang="pt-BR"` e o aviso "Available in Portuguese". O artigo do Backup Monitor não deve ser traduzido antes de ser anonimizado.
+
+## Incremento #06: currículos publicados
+
+Os currículos oficiais PT-BR e EN são publicados em `public/documents/resume/` e atualizados com `npm run resumes` (ver README). Os botões do Header, do Hero e da seção Disponibilidade apontam para esses arquivos.
+
+Exceção editorial decidida pelo autor: os currículos são documentos pessoais e podem citar empregadores (incluindo a Informatech), o nome interno do Backup Monitor e o Astronomy Tickets. As restrições acima continuam valendo para páginas, cards, artigos e demais conteúdos do site.
