@@ -1,14 +1,11 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { BlogPreviewSection } from "@/components/sections/BlogPreviewSection";
+import { AvailabilitySection } from "@/components/sections/AvailabilitySection";
 import { FeaturedProjectSection } from "@/components/sections/FeaturedProjectSection";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { JourneySection } from "@/components/sections/JourneySection";
-import { MediaSection } from "@/components/sections/MediaSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { SocialSection } from "@/components/sections/SocialSection";
-import { SpaceLabSection } from "@/components/sections/SpaceLabSection";
+import { PositioningSection } from "@/components/sections/PositioningSection";
+import { RecordsSection } from "@/components/sections/RecordsSection";
+import { TrajectorySection } from "@/components/sections/TrajectorySection";
 import { createLocalizedMetadata } from "@/lib/seo";
 import { getSiteContent } from "@/content/site";
 import { isLocale } from "@/lib/i18n";
@@ -29,21 +26,15 @@ export default async function Home({ params }: HomeProps) {
 
       <HeroSection content={content.hero} />
 
-        <FeaturedProjectSection locale={locale} />
+      <PositioningSection content={content.positioning} />
 
-      <ProjectsSection />
+      <FeaturedProjectSection locale={locale} />
 
-      <AboutSection />
+      <TrajectorySection content={content.journey} />
 
-      <JourneySection />
+      <RecordsSection locale={locale} content={content.records} />
 
-      <SpaceLabSection />
-
-      <MediaSection />
-
-      <BlogPreviewSection />
-
-      <SocialSection />
+      <AvailabilitySection content={content.availability} />
 
       <Footer />
     </main>

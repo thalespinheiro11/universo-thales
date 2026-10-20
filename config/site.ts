@@ -3,6 +3,7 @@ export const siteConfig = {
   url: "https://thalespinheiro.com.br",
   name: "Thales Pinheiro",
   social: {
+    linkedin: "https://www.linkedin.com/in/thales-pinheiro11/",
     github: "https://github.com/thalespinheiro11",
     twitch: "https://twitch.tv/o_boja",
     instagram: "https://instagram.com/thaless.pinheiro",

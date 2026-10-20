@@ -31,4 +31,52 @@ export const siteContent = {
     nyxStatus: "Systems operational. Route established.",
     coordinates: "Earth orbit // Sector 026",
   },
+  positioning: {
+    eyebrow: "Positioning",
+    statement:
+      "I build modern web applications focused on clarity, experience, and problem-solving.",
+    pillars: [
+      { title: "User experience" },
+      { title: "Clean code" },
+      { title: "Real results" },
+    ],
+  },
+  journey: {
+    eyebrow: "Journey",
+    title: "Every stage added a new perspective.",
+    steps: [
+      { title: "Design", description: "Visual communication and experience" },
+      { title: "Copy", description: "Words that connect and transform" },
+      { title: "IT", description: "Logic, systems, and structure" },
+      { title: "Development", description: "Ideas turned into digital solutions" },
+    ],
+    summary:
+      "Every stage gave me a new perspective. All of them brought me here.",
+    cta: "More about me",
+  },
+  records: {
+    eyebrow: "Blog / Logs",
+    title: "Recent logs",
+    viewAll: "View all logs",
+    read: "Read log",
+    translationNote: "Available in Portuguese",
+  },
+  availability: {
+    eyebrow: "Availability",
+    title: "Open to professional opportunities",
+    description: "Let's build something great together.",
+    resumes: [
+      { label: "Résumé PT-BR", lang: "pt-BR" },
+      { label: "Résumé EN", lang: "en" },
+    ],
+    resumesUnavailable: "In preparation",
+  },
+  contact: {
+    eyebrow: "Contact",
+    title: "Let's talk",
+    email: "Email",
+    copyright: "All rights reserved.",
+    signature: "Made with code, purpose, and coffee.",
+    externalLink: "opens in a new tab",
+  },
 } as const;

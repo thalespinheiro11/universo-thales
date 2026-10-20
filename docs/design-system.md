@@ -29,6 +29,8 @@ Os tokens Tailwind CSS 4 ficam em `app/globals.css`:
 
 Componentes novos devem usar os tokens sem repetir hexadecimais. Componentes antigos serão migrados apenas quando entrarem no escopo de um incremento.
 
+Home, páginas internas, Footer e botão flutuante de contato já usam os tokens. `SectionBadge`, `VintageButton`, `VintageCard` e `Container` mantêm os nomes antigos, mas seguem esta direção. O topo das páginas internas usa `components/layout/PageIntro.tsx`, e os rótulos numerados das seções usam `SectionEyebrow`. Ainda têm cores e classes do estilo anterior (`cartoon-*`, `vintage-*` e os tons dourados em `globals.css`) apenas as seções legadas fora da Home, `NyxNote`, `MissionPanel`, `OrbitalDecoration`, `Constellation` e a página `nyx-test`.
+
 ## Tipografia
 
 - Display: Cinzel 600/700, servida localmente pelo pacote já instalado. Uso restrito a marca e títulos editoriais.

@@ -1,4 +1,3 @@
-import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
@@ -11,11 +10,9 @@ import { defaultLocale, isLocale } from "@/lib/i18n";
 import { localizedLanguages, localizedUrl } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { Constellation } from "@/components/ui/Constellation";
+import { PageIntro } from "@/components/layout/PageIntro";
 import { Container } from "@/components/ui/Container";
-import { OrbitalDecoration } from "@/components/ui/OrbitalDecoration";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionBadge } from "@/components/ui/SectionBadge";
 import { VintageButton } from "@/components/ui/VintageButton";
 
 type ProjectPageProps = {
@@ -48,162 +45,100 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     <main className="relative min-h-screen overflow-hidden">
       <Header />
 
-      <OrbitalDecoration className="right-[-120px] top-40 hidden xl:block" />
-      <Constellation className="left-10 top-44 hidden xl:block" />
-
-      <section className="relative px-6 pb-24 pt-40">
+      <section className="relative pb-24 pt-40">
         <Container>
-          <Reveal>
-            <Link
-              href="/projects"
-              className="text-xs font-black uppercase tracking-[0.25em] text-[#d8b46a] transition hover:text-[#f4e7c5]"
-            >
-              ← Voltar para projetos
-            </Link>
-          </Reveal>
-
-          <div className="mt-10 grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <Reveal>
-              <div>
-                <SectionBadge>
-                  Missão {String(missionNumber).padStart(3, "0")}
-                </SectionBadge>
-
-                <h1 className="mt-8 max-w-4xl text-5xl font-black uppercase leading-none tracking-[-0.06em] text-[#f4e7c5] md:text-7xl">
-                  {project.title}
-                </h1>
-
-                <p className="mt-8 max-w-2xl text-lg leading-8 text-[#f4e7c5]/70">
-                  {project.description}
-                </p>
-
-                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                  <VintageButton href="/projects">
-                    Todas as missões
-                  </VintageButton>
-
+              <PageIntro
+                back={{ href: "/projects", label: "Voltar para projetos" }}
+                badge={`Missão ${String(missionNumber).padStart(3, "0")}`}
+                title={project.title}
+                description={project.description}
+              >
+                <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+                  <VintageButton href="/projects">Todas as missões</VintageButton>
                   <VintageButton href="/contact" variant="secondary">
                     Abrir contato
                   </VintageButton>
                 </div>
-              </div>
+              </PageIntro>
             </Reveal>
 
             <Reveal delay={0.12}>
-              <div className="vintage-card hand-drawn-border relative overflow-hidden rounded-[2.5rem] p-8">
-                <div className="absolute right-[-80px] top-[-80px] h-56 w-56 rounded-full border border-[#d8b46a]/20" />
-                <div className="absolute bottom-[-120px] left-[-120px] h-72 w-72 rounded-full bg-[#d8b46a]/5 blur-3xl" />
+              <aside className="border border-line bg-surface/80 p-6 sm:p-8" aria-labelledby="mission-file-title">
+                <p id="mission-file-title" className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+                  Arquivo da missão
+                </p>
 
-                <div className="relative z-10">
-                  <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
-                    Arquivo da missão
-                  </p>
-
-                  <div className="mt-8 grid gap-5">
-                    <div className="rounded-2xl border border-[#f4e7c5]/10 bg-[#080706]/40 p-5">
-                      <p className="text-xs uppercase tracking-[0.25em] text-[#9f875f]">
-                        Status
-                      </p>
-
-                      <p className="mt-2 text-xl font-black uppercase text-[#f4e7c5]">
-                        {project.status}
-                      </p>
+                <dl className="mt-6 grid gap-px border border-line bg-line">
+                  {[
+                    { label: "Status", value: project.status },
+                    { label: "Ano", value: project.year },
+                    { label: "Categoria", value: project.category },
+                  ].map((item) => (
+                    <div key={item.label} className="bg-canvas p-5">
+                      <dt className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-2 font-display text-lg font-semibold uppercase text-foreground">
+                        {item.value}
+                      </dd>
                     </div>
-
-                    <div className="rounded-2xl border border-[#f4e7c5]/10 bg-[#080706]/40 p-5">
-                      <p className="text-xs uppercase tracking-[0.25em] text-[#9f875f]">
-                        Ano
-                      </p>
-
-                      <p className="mt-2 text-xl font-black uppercase text-[#f4e7c5]">
-                        {project.year}
-                      </p>
-                    </div>
-
-                    <div className="rounded-2xl border border-[#f4e7c5]/10 bg-[#080706]/40 p-5">
-                      <p className="text-xs uppercase tracking-[0.25em] text-[#9f875f]">
-                        Categoria
-                      </p>
-
-                      <p className="mt-2 text-xl font-black uppercase text-[#f4e7c5]">
-                        {project.category}
-                      </p>
-                    </div>
-
-                    <div className="rounded-2xl border border-[#f4e7c5]/10 bg-[#080706]/40 p-5">
-                      <p className="text-xs uppercase tracking-[0.25em] text-[#9f875f]">
-                        Stack / Ferramentas
-                      </p>
-
-                      <div className="mt-4 flex flex-wrap gap-3">
-                        {project.stack.map((item) => (
-                          <span
-                            key={item}
-                            className="rounded-full border border-[#f4e7c5]/15 bg-[#f4e7c5]/5 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#f4e7c5]/75"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                  ))}
+                  <div className="bg-canvas p-5">
+                    <dt className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+                      Stack / Ferramentas
+                    </dt>
+                    <dd className="mt-4 flex flex-wrap gap-2">
+                      {project.stack.map((item) => (
+                        <span
+                          key={item}
+                          className="border border-line px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-secondary"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </dd>
                   </div>
-                </div>
-              </div>
+                </dl>
+              </aside>
             </Reveal>
           </div>
 
           <Reveal delay={0.18}>
-            <div className="mt-16 rounded-[2.5rem] border border-[#d8b46a]/20 bg-[#d8b46a]/10 p-8 md:p-10">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
+            <section className="mt-16 border-l border-line-strong pl-6 sm:pl-8" aria-labelledby="mission-objective-title">
+              <h2 id="mission-objective-title" className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
                 Objetivo da missão
-              </p>
-
-              <p className="mt-6 max-w-5xl text-xl leading-10 text-[#f4e7c5]/75">
+              </h2>
+              <p className="mt-6 max-w-4xl text-lg leading-9 text-foreground sm:text-xl sm:leading-10">
                 {project.objective}
               </p>
-            </div>
+            </section>
           </Reveal>
 
-          <div className="mt-16 grid gap-8 lg:grid-cols-2">
-            <Reveal delay={0.1}>
-              <div className="vintage-card rounded-[2rem] p-8">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
-                  Aprendizados registrados
-                </p>
-
-                <ul className="mt-8 space-y-5">
-                  {project.learnings.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-4 text-base leading-7 text-[#f4e7c5]/70"
-                    >
-                      <span className="mt-1 text-[#d8b46a]">✦</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <div className="vintage-card rounded-[2rem] p-8">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
-                  Próximos passos
-                </p>
-
-                <ul className="mt-8 space-y-5">
-                  {project.nextSteps.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-4 text-base leading-7 text-[#f4e7c5]/70"
-                    >
-                      <span className="mt-1 text-[#d8b46a]">→</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
+          <div className="mt-16 grid gap-6 lg:grid-cols-2">
+            {[
+              { title: "Aprendizados registrados", items: project.learnings },
+              { title: "Próximos passos", items: project.nextSteps },
+            ].map((group, groupIndex) => (
+              <Reveal key={group.title} delay={0.1 + groupIndex * 0.1}>
+                <section className="h-full border border-line bg-surface/80 p-6 sm:p-8">
+                  <h2 className="font-display text-xl font-semibold uppercase text-foreground">
+                    {group.title}
+                  </h2>
+                  <ul className="mt-6 divide-y divide-line border-t border-line">
+                    {group.items.map((item, index) => (
+                      <li key={item} className="flex gap-4 py-4 text-sm leading-7 text-secondary">
+                        <span className="font-mono text-[0.62rem] leading-7 tracking-[0.16em] text-muted" aria-hidden="true">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </section>

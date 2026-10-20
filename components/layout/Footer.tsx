@@ -1,50 +1,67 @@
-import { personalLinks } from "@/lib/constants";
-import { Container } from "../ui/Container";
-import { VintageButton } from "../ui/VintageButton";
+"use client";
+
+import { ArrowUpRight, AtSign, Briefcase, CodeXml, Mail, MessageCircle } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { siteConfig } from "@/config/site";
+import { getSiteContent } from "@/content/site";
+import { getLocaleFromPathname, isLocale } from "@/lib/i18n";
+import { SectionEyebrow } from "../ui/SectionEyebrow";
 
 export function Footer() {
+  const pathname = usePathname();
+  const content = getSiteContent(getLocaleFromPathname(pathname)).contact;
+  const segments = pathname.split("/").filter(Boolean);
+  const isLocalizedHome = segments.length === 1 && isLocale(segments[0]);
+
+  const channels = [
+    { label: "LinkedIn", href: siteConfig.social.linkedin, icon: Briefcase, external: true },
+    { label: "GitHub", href: siteConfig.social.github, icon: CodeXml, external: true },
+    { label: "Instagram", href: siteConfig.social.instagram, icon: AtSign, external: true },
+    { label: content.email, href: `mailto:${siteConfig.social.email}`, icon: Mail, external: false },
+    { label: "WhatsApp", href: siteConfig.social.whatsapp, icon: MessageCircle, external: true },
+  ];
+
   return (
-    <footer className="relative overflow-hidden border-t border-[#f4e7c5]/10 py-16">
-      <Container>
-        <div className="vintage-card hand-drawn-border rounded-[2.5rem] p-8 md:p-12">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-[#d8b46a]">
-                Fim da transmissão
-              </p>
-
-              <h2 className="mt-6 max-w-3xl text-4xl font-black uppercase leading-tight tracking-[-0.04em] text-[#f4e7c5] md:text-5xl">
-                Um universo pessoal em construção constante.
-              </h2>
-
-              <p className="mt-6 max-w-2xl text-base leading-8 text-[#f4e7c5]/65">
-                {personalLinks.tagline} Este espaço cresce junto com meus
-                projetos, estudos, lives, ideias e com a Astronomy.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
-              <VintageButton href="/projects">
-                Projetos
-              </VintageButton>
-
-              <VintageButton href="/blog" variant="secondary">
-                Diário
-              </VintageButton>
-            </div>
-          </div>
-
-          <div className="mt-12 flex flex-col gap-4 border-t border-[#f4e7c5]/10 pt-8 text-sm text-[#f4e7c5]/50 md:flex-row md:items-center md:justify-between">
-            <p>
-              © 2026 {personalLinks.name}. Todos os registros continuam em órbita.
-            </p>
-
-            <p className="uppercase tracking-[0.25em] text-[#d8b46a]">
-              Tecnologia • Astronomia • Imaginação
-            </p>
-          </div>
+    <footer id="contato" className="relative border-t border-line bg-canvas" aria-labelledby="footer-title">
+      <div className="mx-auto grid max-w-[90rem] gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[auto_minmax(0,1fr)] lg:items-center lg:gap-16 lg:px-10">
+        <div>
+          <SectionEyebrow index={isLocalizedHome ? "07" : undefined}>{content.eyebrow}</SectionEyebrow>
+          <h2
+            id="footer-title"
+            className="mt-6 font-display text-2xl font-semibold uppercase leading-none text-foreground sm:text-3xl"
+          >
+            {content.title}
+          </h2>
         </div>
-      </Container>
+
+        <ul className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-5 lg:justify-self-end">
+          {channels.map(({ label, href, icon: Icon, external }) => (
+            <li key={href} className="bg-canvas last:col-span-2 sm:last:col-span-1">
+              <a
+                href={href}
+                {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+                className="flex min-h-14 items-center justify-between gap-4 px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary transition-colors hover:bg-surface-elevated hover:text-foreground"
+              >
+                <span className="flex items-center gap-3">
+                  <Icon size={16} strokeWidth={1.5} aria-hidden="true" />
+                  {label}
+                  {external && <span className="sr-only"> ({content.externalLink})</span>}
+                </span>
+                <ArrowUpRight size={14} className="text-muted" aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="border-t border-line">
+        <div className="mx-auto flex max-w-[90rem] flex-col gap-3 px-4 py-6 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-10">
+          <p>
+            © 2026 {siteConfig.name}. {content.copyright}
+          </p>
+          <p>{content.signature}</p>
+        </div>
+      </div>
     </footer>
   );
 }
