@@ -26,7 +26,7 @@ O produto contém Home, Sobre, Projetos, detalhes de projeto, Blog, artigos, Con
 
 ## Incremento #03: projetos em destaque
 
-A Home destaca três projetos selecionados: Mokupuni Va'a como destaque principal, seguido por NoxCare e Backup Monitor. Os cards usam conteúdo resumido localizado, enquanto os estudos de caso continuam no registro legado e não são considerados completos em inglês.
+A Home destaca três projetos selecionados: Mokupuni Va'a como destaque principal, seguido por NoxCare e Backup Monitor. Os cards usam conteúdo resumido localizado. Os estudos de caso têm tradução em inglês em `data/projects.en.ts` desde o incremento #05.
 
 Os cards usam placeholders visuais intencionais até que assets reais sejam aprovados. A substituição futura deve preservar a estrutura do card e usar screenshots reais: material do processo para Mokupuni, interface real para NoxCare e demonstração sanitizada para Backup Monitor.
 
@@ -43,3 +43,7 @@ A Home segue a estrutura de `docs/references/home-visual-reference-v1.png`: 01 H
 As seções legadas (Projetos duplicados, Sobre, Jornada, Space Lab, Mídia, Blog e Social) deixaram de ser renderizadas na Home; os componentes continuam no repositório até uma decisão sobre reaproveitamento ou remoção.
 
 Blog / Registros usa uma seleção explícita em `content/blog.ts`, sem o artigo do Backup Monitor enquanto ele não for anonimizado. Os currículos aparecem como "em preparação" até os arquivos oficiais existirem. O Footer, compartilhado por todas as páginas, usa apenas canais já configurados em `config/site.ts`, incluindo o LinkedIn.
+
+## Incremento #05: páginas internas em inglês
+
+Os textos de Sobre, Projetos, Blog, Contato, Astronomy e os rótulos das páginas de projeto e artigo ficam em `content/<locale>/pages.ts`. Os cinco estudos de caso têm tradução em `data/projects.en.ts`, registrada como `translations.en`. Os artigos do blog continuam apenas em PT-BR; no `/en`, aparecem com `lang="pt-BR"` e o aviso "Available in Portuguese". O artigo do Backup Monitor não deve ser traduzido antes de ser anonimizado.

@@ -13,7 +13,8 @@ Este roadmap registra sequência, não compromisso de prazo.
 ## Conteúdo
 
 - revisar e consolidar textos institucionais PT-BR;
-- traduzir conteúdo institucional para inglês;
+- traduzir conteúdo institucional e estudos de caso para inglês (concluído);
+- traduzir os artigos do blog para inglês, com revisão do autor;
 - migrar projetos prioritários para estudos de caso incrementais;
 - definir disponibilidade e metadata de cada tradução de artigo;
 - adicionar os currículos oficiais quando forem fornecidos.

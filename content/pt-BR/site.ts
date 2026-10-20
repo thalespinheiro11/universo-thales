@@ -78,5 +78,6 @@ export const siteContent = {
     copyright: "Todos os direitos reservados.",
     signature: "Feito com código, propósito e café.",
     externalLink: "abre em nova aba",
+    floating: "Canal direto",
   },
 } as const;

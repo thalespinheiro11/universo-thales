@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { getBlogPosts } from "@/content/blog";
+import { getBlogPosts, getBlogPostTranslation } from "@/content/blog";
+import { getPagesContent } from "@/content/pages";
 import { isLocale } from "@/lib/i18n";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
@@ -17,6 +18,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const blogPosts = getBlogPosts(locale);
+  const pages = getPagesContent(locale);
+  const content = pages.blog;
   return (
     <main className="relative min-h-screen overflow-hidden">
       <Header />
@@ -25,18 +28,18 @@ export default async function BlogPage({ params }: BlogPageProps) {
         <Container>
           <Reveal>
             <PageIntro
-              badge="Diário de bordo"
-              title="Registros pessoais de tecnologia, ciência e criação."
-              description="Um espaço para escrever sobre desenvolvimento, astronomia, física, produtividade, livros, bastidores da Astronomy, lives e construção da minha jornada."
+              badge={content.badge}
+              title={content.title}
+              description={content.description}
             />
           </Reveal>
 
           <Reveal delay={0.15}>
             <StatStrip
               items={[
-                { label: "Registros", value: blogPosts.length },
-                { label: "Formato", value: "Diário" },
-                { label: "Arquivo", value: "Pessoal" },
+                { label: content.totalLabel, value: blogPosts.length },
+                { label: content.formatLabel, value: content.formatValue },
+                { label: content.archiveLabel, value: content.archiveValue },
               ]}
             />
           </Reveal>
@@ -49,6 +52,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
                   category={`${post.category} • ${post.date}`}
                   description={post.excerpt}
                   href={`/blog/${post.slug}`}
+                  actionLabel={pages.common.openFile}
+                  lang={getBlogPostTranslation(post.slug, locale) ? undefined : "pt-BR"}
                 />
               </Reveal>
             ))}
