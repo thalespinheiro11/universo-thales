@@ -1,11 +1,8 @@
-import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { Constellation } from "@/components/ui/Constellation";
+import { PageIntro } from "@/components/layout/PageIntro";
 import { Container } from "@/components/ui/Container";
-import { OrbitalDecoration } from "@/components/ui/OrbitalDecoration";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionBadge } from "@/components/ui/SectionBadge";
 import { VintageButton } from "@/components/ui/VintageButton";
 import { createLocalizedMetadata } from "@/lib/seo";
 
@@ -35,42 +32,25 @@ export default function AboutPage() {
     <main className="relative min-h-screen overflow-hidden">
       <Header />
 
-      <OrbitalDecoration className="right-[-120px] top-40 hidden xl:block" />
-      <Constellation className="left-10 top-44 hidden xl:block" />
-
-      <section className="relative px-6 pb-24 pt-40">
+      <section className="relative pb-24 pt-40">
         <Container>
           <Reveal>
-            <Link
-              href="/"
-              className="text-xs font-black uppercase tracking-[0.25em] text-[#d8b46a] transition hover:text-[#f4e7c5]"
-            >
-              ← Voltar para início
-            </Link>
-
-            <div className="mt-10">
-              <SectionBadge>Manifesto pessoal</SectionBadge>
-
-              <h1 className="mt-8 max-w-5xl text-5xl font-black uppercase leading-none tracking-[-0.06em] text-[#f4e7c5] md:text-7xl">
-                Um explorador digital construindo tecnologia com imaginação.
-              </h1>
-
-              <p className="mt-8 max-w-3xl text-lg leading-8 text-[#f4e7c5]/70">
-                Eu sou Thales Pinheiro. Este espaço existe para reunir minha
-                jornada, meus projetos, minhas ideias e a forma como enxergo
-                tecnologia, criatividade, astronomia e construção de futuro.
-              </p>
-            </div>
+            <PageIntro
+              back={{ href: "/", label: "Voltar para início" }}
+              badge="Manifesto pessoal"
+              title="Um explorador digital construindo tecnologia com imaginação."
+              description="Eu sou Thales Pinheiro. Este espaço existe para reunir minha jornada, meus projetos, minhas ideias e a forma como enxergo tecnologia, criatividade, astronomia e construção de futuro."
+            />
           </Reveal>
 
-          <div className="mt-16 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal>
-              <div className="vintage-card hand-drawn-border rounded-[2.5rem] p-8">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
+              <section className="h-full border border-line bg-surface/80 p-6 sm:p-8" aria-labelledby="about-who-title">
+                <h2 id="about-who-title" className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
                   Quem sou eu
-                </p>
+                </h2>
 
-                <div className="mt-6 space-y-6 text-base leading-8 text-[#f4e7c5]/70">
+                <div className="mt-6 space-y-6 text-base leading-8 text-secondary">
                   <p>
                     Gosto de construir coisas. Sistemas, ideias, experiências,
                     páginas, automações, cenas de live, projetos e pequenos
@@ -89,26 +69,26 @@ export default function AboutPage() {
                     maior para descobrir.
                   </p>
                 </div>
-              </div>
+              </section>
             </Reveal>
 
             <Reveal delay={0.12}>
-              <div className="vintage-card hand-drawn-border rounded-[2.5rem] p-8">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
+              <section className="h-full border border-line bg-surface/80 p-6 sm:p-8">
+                <p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
                   O que estou construindo
                 </p>
 
-                <h2 className="mt-6 text-4xl font-black uppercase leading-tight text-[#f4e7c5]">
+                <h2 className="mt-6 font-display text-2xl font-semibold uppercase leading-tight text-foreground sm:text-3xl">
                   Um ecossistema pessoal de projetos, conteúdo e tecnologia.
                 </h2>
 
-                <p className="mt-6 text-base leading-8 text-[#f4e7c5]/70">
+                <p className="mt-6 text-base leading-8 text-secondary">
                   NoxCare, Backup Monitor, Astronomy, lives, blog pessoal e
                   automações fazem parte de uma mesma direção: transformar
                   aprendizado, criatividade e trabalho técnico em algo concreto.
                 </p>
 
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <VintageButton href="/projects">
                     Ver projetos
                   </VintageButton>
@@ -117,47 +97,50 @@ export default function AboutPage() {
                     Ler diário
                   </VintageButton>
                 </div>
-              </div>
+              </section>
             </Reveal>
           </div>
 
-          <div className="mt-16 grid gap-8 lg:grid-cols-2">
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
             <Reveal>
-              <div className="rounded-[2rem] border border-[#f4e7c5]/10 bg-[#f4e7c5]/5 p-8">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
+              <section className="h-full border border-line bg-surface/80 p-6 sm:p-8" aria-labelledby="about-values-title">
+                <h2 id="about-values-title" className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
                   Valores
-                </p>
+                </h2>
 
-                <div className="mt-6 grid gap-3">
-                  {values.map((value) => (
-                    <div
+                <ul className="mt-6 divide-y divide-line border-y border-line">
+                  {values.map((value, index) => (
+                    <li
                       key={value}
-                      className="rounded-2xl border border-[#f4e7c5]/10 bg-[#080706]/40 px-5 py-4 text-sm font-black uppercase tracking-[0.16em] text-[#f4e7c5]/75"
+                      className="flex items-center gap-4 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-foreground"
                     >
+                      <span className="font-mono text-[0.62rem] tracking-[0.16em] text-muted" aria-hidden="true">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
                       {value}
-                    </div>
+                    </li>
                   ))}
-                </div>
-              </div>
+                </ul>
+              </section>
             </Reveal>
 
             <Reveal delay={0.12}>
-              <div className="rounded-[2rem] border border-[#d8b46a]/20 bg-[#d8b46a]/10 p-8">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
+              <section className="h-full border border-line bg-surface/80 p-6 sm:p-8" aria-labelledby="about-interests-title">
+                <h2 id="about-interests-title" className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
                   Interesses orbitais
-                </p>
+                </h2>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <ul className="mt-6 flex flex-wrap gap-2">
                   {interests.map((interest) => (
-                    <span
+                    <li
                       key={interest}
-                      className="rounded-full border border-[#f4e7c5]/15 bg-[#080706]/40 px-4 py-3 text-xs font-black uppercase tracking-[0.18em] text-[#f4e7c5]/75"
+                      className="border border-line px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-secondary"
                     >
                       {interest}
-                    </span>
+                    </li>
                   ))}
-                </div>
-              </div>
+                </ul>
+              </section>
             </Reveal>
           </div>
         </Container>

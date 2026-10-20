@@ -13,13 +13,13 @@ export function VintageButton({
 }: VintageButtonProps) {
   const variantClasses =
     variant === "primary"
-      ? "bg-[#f4e7c5] text-[#080706] hover:bg-[#d8b46a]"
-      : "bg-[#080706]/60 text-[#f4e7c5] hover:bg-[#f4e7c5] hover:text-[#080706]";
+      ? "bg-foreground text-canvas hover:bg-secondary"
+      : "border border-line-strong text-foreground hover:bg-foreground hover:text-canvas";
 
   return (
     <Link
       href={href}
-      className={`cartoon-button inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-center text-xs font-black uppercase tracking-[0.18em] transition-all duration-300 sm:w-auto sm:px-6 sm:text-sm sm:tracking-[0.22em] ${variantClasses}`}
+      className={`inline-flex min-h-12 w-full items-center justify-center gap-3 px-6 py-3 text-center text-xs font-bold uppercase tracking-[0.16em] transition-colors sm:w-auto ${variantClasses}`}
     >
       {children}
     </Link>

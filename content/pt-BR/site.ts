@@ -31,4 +31,52 @@ export const siteContent = {
     nyxStatus: "Sistemas operacionais. Rota estabelecida.",
     coordinates: "Órbita terrestre // Setor 026",
   },
+  positioning: {
+    eyebrow: "Posicionamento",
+    statement:
+      "Desenvolvo aplicações web modernas com foco em clareza, experiência e resolução de problemas.",
+    pillars: [
+      { title: "Experiência do usuário" },
+      { title: "Código limpo" },
+      { title: "Resultados reais" },
+    ],
+  },
+  journey: {
+    eyebrow: "Trajetória",
+    title: "Cada etapa somou uma nova perspectiva.",
+    steps: [
+      { title: "Design", description: "Comunicação visual e experiência" },
+      { title: "Copy", description: "Palavras que conectam e transformam" },
+      { title: "TI", description: "Lógica, sistemas e estrutura" },
+      { title: "Desenvolvimento", description: "Ideias transformadas em soluções digitais" },
+    ],
+    summary:
+      "Cada etapa me trouxe uma nova perspectiva. Todas me trouxeram até aqui.",
+    cta: "Saber mais sobre mim",
+  },
+  records: {
+    eyebrow: "Blog / Registros",
+    title: "Registros recentes",
+    viewAll: "Ver todos os registros",
+    read: "Ler registro",
+    translationNote: "",
+  },
+  availability: {
+    eyebrow: "Disponibilidade",
+    title: "Aberto a oportunidades profissionais",
+    description: "Vamos construir algo incrível juntos.",
+    resumes: [
+      { label: "Currículo PT-BR", lang: "pt-BR" },
+      { label: "Currículo EN", lang: "en" },
+    ],
+    resumesUnavailable: "Em preparação",
+  },
+  contact: {
+    eyebrow: "Contato",
+    title: "Vamos conversar?",
+    email: "E-mail",
+    copyright: "Todos os direitos reservados.",
+    signature: "Feito com código, propósito e café.",
+    externalLink: "abre em nova aba",
+  },
 } as const;

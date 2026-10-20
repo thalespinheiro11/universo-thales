@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
 
 type VintageCardProps = {
@@ -13,41 +14,36 @@ export function VintageCard({
   category,
   href,
 }: VintageCardProps) {
-  const content = (
-    <article className="cartoon-ink group h-full overflow-hidden rounded-[2rem] p-6 transition-all duration-300 hover:-translate-y-2">
-      <div className="relative z-10">
-        {category && (
-          <p className="cartoon-badge">
-            {category}
-          </p>
-        )}
-
-        <h3 className="cartoon-title mt-6 text-2xl font-black uppercase leading-tight tracking-[-0.03em] text-[#f4e7c5]">
-          {title}
-        </h3>
-
-        <div className="vintage-rule mt-5" />
-
-        <p className="mt-5 text-sm leading-7 text-[#f4e7c5]/65">
-          {description}
-        </p>
-
-        {href && (
-          <p className="mt-8 text-xs font-black uppercase tracking-[0.25em] text-[#d8b46a]">
-            Abrir arquivo →
-          </p>
-        )}
-      </div>
-    </article>
-  );
-
-  if (!href) {
-    return content;
-  }
-
   return (
-    <Link href={href} className="block h-full">
-      {content}
-    </Link>
+    <article className="group relative flex h-full flex-col border border-line bg-surface/80 p-6 transition-colors duration-300 focus-within:border-line-strong hover:border-line-strong">
+      {category && (
+        <p className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-muted">
+          {category}
+        </p>
+      )}
+
+      <h3 className="mt-6 font-display text-xl font-semibold uppercase leading-tight text-foreground">
+        {href ? (
+          <Link href={href} className="after:absolute after:inset-0 after:content-['']">
+            {title}
+          </Link>
+        ) : (
+          title
+        )}
+      </h3>
+
+      <div className="mt-5 h-px w-16 bg-line-strong" aria-hidden="true" />
+
+      <p className="mt-5 flex-1 text-sm leading-7 text-secondary">
+        {description}
+      </p>
+
+      {href && (
+        <p className="mt-6 inline-flex items-center gap-2 border-t border-line pt-4 text-xs font-bold uppercase tracking-[0.16em] text-foreground" aria-hidden="true">
+          Abrir arquivo
+          <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+        </p>
+      )}
+    </article>
   );
 }

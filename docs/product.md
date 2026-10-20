@@ -34,4 +34,12 @@ Backup Monitor deve ser apresentado publicamente apenas como ferramenta interna 
 
 Astronomy Tickets está fora da exposição pública e não deve ser adicionado à Home, aos destaques, à listagem pública, ao sitemap ou a conteúdo novo. Essa decisão não se aplica ao projeto distinto chamado Astronomy.
 
-Na Home, a hierarquia profissional posiciona Projetos em Destaque imediatamente após o Hero. A antiga seção de Transmissões não é renderizada nessa página, embora seus componentes, conteúdo e canais continuem disponíveis para outros usos.
+Na Home, a hierarquia profissional posiciona Projetos em Destaque logo após o Hero e o Posicionamento. A antiga seção de Transmissões não é renderizada nessa página, embora seus componentes, conteúdo e canais continuem disponíveis para outros usos.
+
+## Incremento #04: Home na referência v1
+
+A Home segue a estrutura de `docs/references/home-visual-reference-v1.png`: 01 Hero, 02 Posicionamento, 03 Projetos em destaque, 04 Trajetória, 05 Blog / Registros, 06 Disponibilidade e currículos e 07 Contato (Footer). Os textos ficam em `content/<locale>/site.ts`.
+
+As seções legadas (Projetos duplicados, Sobre, Jornada, Space Lab, Mídia, Blog e Social) deixaram de ser renderizadas na Home; os componentes continuam no repositório até uma decisão sobre reaproveitamento ou remoção.
+
+Blog / Registros usa uma seleção explícita em `content/blog.ts`, sem o artigo do Backup Monitor enquanto ele não for anonimizado. Os currículos aparecem como "em preparação" até os arquivos oficiais existirem. O Footer, compartilhado por todas as páginas, usa apenas canais já configurados em `config/site.ts`, incluindo o LinkedIn.

@@ -1,4 +1,3 @@
-import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/data/blog";
@@ -11,11 +10,9 @@ import { defaultLocale, isLocale } from "@/lib/i18n";
 import { localizedLanguages, localizedUrl } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { Constellation } from "@/components/ui/Constellation";
+import { PageIntro } from "@/components/layout/PageIntro";
 import { Container } from "@/components/ui/Container";
-import { OrbitalDecoration } from "@/components/ui/OrbitalDecoration";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionBadge } from "@/components/ui/SectionBadge";
 import { VintageButton } from "@/components/ui/VintageButton";
 
 type BlogPostPageProps = {
@@ -48,101 +45,59 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <main className="relative min-h-screen overflow-hidden">
       <Header />
 
-      <OrbitalDecoration className="right-[-120px] top-40 hidden xl:block" />
-      <Constellation className="left-10 top-44 hidden xl:block" />
-
-      <article className="relative px-6 pb-24 pt-40">
+      <article className="relative pb-24 pt-40">
         <Container>
           <Reveal>
-            <Link
-              href="/blog"
-              className="text-xs font-black uppercase tracking-[0.25em] text-[#d8b46a] transition hover:text-[#f4e7c5]"
+            <PageIntro
+              back={{ href: "/blog", label: "Voltar para o diário" }}
+              badge={`Registro ${String(postNumber).padStart(3, "0")}`}
+              title={post.title}
             >
-              ← Voltar para o diário
-            </Link>
-
-            <div className="mt-10 max-w-5xl">
-              <SectionBadge>
-                Registro {String(postNumber).padStart(3, "0")}
-              </SectionBadge>
-
-              <h1 className="mt-8 text-5xl font-black uppercase leading-none tracking-[-0.06em] text-[#f4e7c5] md:text-7xl">
-                {post.title}
-              </h1>
-
-              <div className="mt-8 flex flex-wrap gap-4 text-xs font-black uppercase tracking-[0.25em] text-[#9f875f]">
+              <p className="mt-8 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted">
                 <span>{post.category}</span>
-                <span>•</span>
+                <span aria-hidden="true">·</span>
                 <span>{post.date}</span>
-                <span>•</span>
+                <span aria-hidden="true">·</span>
                 <span>{post.readTime}</span>
-              </div>
-            </div>
+              </p>
+            </PageIntro>
           </Reveal>
 
-          <div className="mt-14 grid gap-10 lg:grid-cols-[0.75fr_0.25fr] lg:items-start">
+          <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start xl:gap-16">
             <Reveal delay={0.12}>
-              <div className="vintage-card hand-drawn-border relative overflow-hidden rounded-[2.5rem] p-8 md:p-12">
-                <div className="absolute inset-0 opacity-[0.04]">
-                  <div
-                    className="h-full w-full"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px)",
-                      backgroundSize: "100% 34px",
-                    }}
-                  />
-                </div>
-
-                <div className="relative z-10 space-y-8">
-                  {post.content.map((paragraph) => (
-                    <p
-                      key={paragraph}
-                      className="text-xl leading-10 text-[#f4e7c5]/75"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
+              <div className="max-w-3xl space-y-7 border-t border-line pt-10">
+                {post.content.map((paragraph) => (
+                  <p key={paragraph} className="text-lg leading-9 text-secondary">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             </Reveal>
 
             <Reveal delay={0.18}>
-              <aside className="vintage-card sticky top-32 rounded-[2rem] p-6">
-                <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
+              <aside className="border border-line bg-surface/80 p-6 lg:sticky lg:top-32" aria-labelledby="post-file-title">
+                <p id="post-file-title" className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
                   Arquivo
                 </p>
 
-                <div className="mt-6 space-y-5">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.25em] text-[#9f875f]">
-                      Categoria
-                    </p>
-                    <p className="mt-2 text-lg font-black uppercase text-[#f4e7c5]">
-                      {post.category}
-                    </p>
-                  </div>
+                <dl className="mt-6 divide-y divide-line border-y border-line">
+                  {[
+                    { label: "Categoria", value: post.category },
+                    { label: "Data", value: post.date },
+                    { label: "Leitura", value: post.readTime },
+                  ].map((item) => (
+                    <div key={item.label} className="py-4">
+                      <dt className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-2 text-sm font-semibold uppercase tracking-[0.12em] text-foreground">
+                        {item.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
 
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.25em] text-[#9f875f]">
-                      Data
-                    </p>
-                    <p className="mt-2 text-lg font-black uppercase text-[#f4e7c5]">
-                      {post.date}
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.25em] text-[#9f875f]">
-                      Leitura
-                    </p>
-                    <p className="mt-2 text-lg font-black uppercase text-[#f4e7c5]">
-                      {post.readTime}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-8">
+                <div className="mt-6">
                   <VintageButton href="/blog" variant="secondary">
                     Ver registros
                   </VintageButton>

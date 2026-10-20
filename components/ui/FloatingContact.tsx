@@ -1,5 +1,6 @@
 "use client";
 
+import { MessageCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { siteData } from "@/data/site";
 import { isLocale } from "@/lib/i18n";
@@ -16,8 +17,9 @@ export function FloatingContact() {
       href={siteData.social.whatsapp}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-6 right-6 z-[80] rounded-full border border-[#f4e7c5]/25 bg-[#080706]/85 px-5 py-4 text-xs font-black uppercase tracking-[0.22em] text-[#f4e7c5] shadow-[0_0_40px_rgba(216,180,106,0.18)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#d8b46a]/50 hover:bg-[#d8b46a]/15"
+      className="fixed bottom-6 right-6 z-[80] inline-flex min-h-12 items-center gap-3 rounded-full border border-line-strong bg-canvas/90 px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-foreground shadow-[0_16px_50px_rgb(0_0_0_/_0.42)] backdrop-blur-md transition-colors hover:bg-foreground hover:text-canvas"
     >
+      <MessageCircle size={16} strokeWidth={1.5} aria-hidden="true" />
       <span className="hidden sm:inline">Canal direto</span>
       <span className="sm:hidden">Contato</span>
     </a>

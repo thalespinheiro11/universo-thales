@@ -3,6 +3,13 @@ import { ContactCard } from "./ContactCard";
 
 const contacts = [
   {
+    label: "LinkedIn",
+    value: "Thales Pinheiro",
+    href: contactLinks.linkedin,
+    description:
+      "Trajetória profissional, experiências e conexões para oportunidades de trabalho.",
+  },
+  {
     label: "Twitch",
     value: "o_boja",
     href: contactLinks.twitch,
@@ -35,14 +42,15 @@ const contacts = [
 export function ContactGrid() {
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      {contacts.map((contact) => (
-        <ContactCard
-          key={contact.label}
-          label={contact.label}
-          value={contact.value}
-          href={contact.href}
-          description={contact.description}
-        />
+      {contacts.map((contact, index) => (
+        <div key={contact.label} className={index === 0 ? "md:col-span-2" : undefined}>
+          <ContactCard
+            label={contact.label}
+            value={contact.value}
+            href={contact.href}
+            description={contact.description}
+          />
+        </div>
       ))}
     </div>
   );

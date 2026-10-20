@@ -19,6 +19,8 @@ export const siteData = {
     "Construir tecnologia, conteúdo e experiências digitais que misturem criatividade, exploração e propósito.",
 
   social: {
+    linkedin: siteConfig.social.linkedin,
+
     github: siteConfig.social.github,
 
     twitch: siteConfig.social.twitch,

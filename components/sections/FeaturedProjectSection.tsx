@@ -2,8 +2,9 @@ import { getProjectCardContent, type ProjectCard } from "@/content/projects";
 import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
 import type { Locale } from "@/lib/i18n";
 import { Container } from "../ui/Container";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "../ui/Reveal";
-import { VintageButton } from "../ui/VintageButton";
+import { SectionEyebrow } from "../ui/SectionEyebrow";
 
 type FeaturedProjectSectionProps = { locale: Locale };
 
@@ -122,23 +123,26 @@ export function FeaturedProjectSection({
     >
       <Container>
         <Reveal>
-          <div className="mb-12 max-w-2xl">
-            <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.22em] text-muted">
-              <span className="font-mono" aria-hidden="true">
-                02 //
-              </span>
-              <span className="h-px w-12 bg-line-strong" aria-hidden="true" />
-              <span>{content.eyebrow}</span>
+          <div className="mb-12 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <SectionEyebrow index="03">{content.eyebrow}</SectionEyebrow>
+              <h2
+                id="featured-projects-title"
+                className="mt-8 max-w-xl font-display text-4xl uppercase leading-none text-foreground sm:text-5xl"
+              >
+                {content.title}
+              </h2>
+              <p className="mt-6 text-base leading-7 text-secondary">
+                {content.intro}
+              </p>
             </div>
-            <h2
-              id="featured-projects-title"
-              className="mt-8 max-w-xl font-display text-4xl uppercase leading-none text-foreground sm:text-5xl"
+            <Link
+              href="/projects"
+              className="inline-flex min-h-11 w-fit shrink-0 items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-secondary transition-colors hover:text-foreground"
             >
-              {content.title}
-            </h2>
-            <p className="mt-6 text-base leading-7 text-secondary">
-              {content.intro}
-            </p>
+              {content.viewAll}
+              <ArrowRight size={14} aria-hidden="true" />
+            </Link>
           </div>
         </Reveal>
 
@@ -157,14 +161,6 @@ export function FeaturedProjectSection({
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={0.3}>
-          <div className="mt-12">
-            <VintageButton href="/projects" variant="secondary">
-              {content.viewAll} <span aria-hidden="true">→</span>
-            </VintageButton>
-          </div>
-        </Reveal>
       </Container>
     </section>
   );

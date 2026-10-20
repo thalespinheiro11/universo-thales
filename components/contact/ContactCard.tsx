@@ -1,4 +1,4 @@
-import { LocalizedLink as Link } from "@/components/i18n/LocalizedLink";
+import { ArrowUpRight } from "lucide-react";
 
 type ContactCardProps = {
   label: string;
@@ -13,24 +13,26 @@ export function ContactCard({
   href,
   description,
 }: ContactCardProps) {
+  const external = !href.startsWith("mailto:");
+
   return (
-    <Link
+    <a
       href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="vintage-card hand-drawn-border block rounded-[2rem] p-6 transition-all duration-300 hover:-translate-y-2 hover:border-[#d8b46a]/40"
+      {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+      className="group flex h-full flex-col border border-line bg-surface/80 p-6 transition-colors duration-300 hover:border-line-strong sm:p-8"
     >
-      <p className="text-xs font-black uppercase tracking-[0.3em] text-[#d8b46a]">
+      <span className="flex items-center justify-between gap-4 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
         {label}
-      </p>
+        <ArrowUpRight size={16} className="transition-colors group-hover:text-foreground" aria-hidden="true" />
+      </span>
 
-      <h3 className="mt-4 text-2xl font-black uppercase text-[#f4e7c5]">
+      <span className="mt-6 font-display text-2xl font-semibold uppercase text-foreground">
         {value}
-      </h3>
+      </span>
 
-      <p className="mt-4 text-sm leading-7 text-[#f4e7c5]/60">
+      <span className="mt-4 text-sm leading-7 text-secondary">
         {description}
-      </p>
-    </Link>
+      </span>
+    </a>
   );
 }

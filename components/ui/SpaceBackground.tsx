@@ -2,12 +2,25 @@
 
 import { motion } from "framer-motion";
 
+// Gerador com semente fixa: servidor e cliente precisam produzir as mesmas estrelas na hidratação.
+function seededRandom(seed: number) {
+  return () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const random = seededRandom(26);
+const round = (value: number) => Math.round(value * 1000) / 1000;
+
 const stars = Array.from({ length: 80 }, (_, i) => ({
   id: i,
-  left: `${Math.random() * 100}%`,
-  top: `${Math.random() * 100}%`,
-  size: Math.random() * 3 + 1,
-  duration: Math.random() * 4 + 3,
+  left: `${round(random() * 100)}%`,
+  top: `${round(random() * 100)}%`,
+  size: round(random() * 3 + 1),
+  duration: round(random() * 4 + 3),
 }));
 
 export function SpaceBackground() {
