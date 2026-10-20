@@ -15,7 +15,7 @@ export const siteContent = {
     menuClose: "Close menu",
     menuLabel: "Primary navigation",
     languageLabel: "Select language",
-    unavailable: "Coming soon",
+    resumeHint: "PDF, opens in a new tab",
   },
   hero: {
     eyebrow: "Software developer",
@@ -26,7 +26,6 @@ export const siteContent = {
     stack: ["JavaScript", "TypeScript", "React", "Next.js", "Node.js"],
     projectsCta: "View projects",
     resumesCta: "Résumés",
-    resumesUnavailable: "Résumés in preparation",
     nyxRole: "Nyx // Navigation Officer",
     nyxStatus: "Systems operational. Route established.",
     coordinates: "Earth orbit // Sector 026",
@@ -66,10 +65,12 @@ export const siteContent = {
     title: "Open to professional opportunities",
     description: "Let's build something great together.",
     resumes: [
-      { label: "Résumé PT-BR", lang: "pt-BR" },
-      { label: "Résumé EN", lang: "en" },
+      { label: "Résumé PT-BR", lang: "pt-BR", fileName: "Thales-Pinheiro-Curriculo-PT-BR.pdf" },
+      { label: "Résumé EN", lang: "en", fileName: "Thales-Pinheiro-Resume-EN.pdf" },
     ],
-    resumesUnavailable: "In preparation",
+    view: "View",
+    download: "Download",
+    newTab: "opens in a new tab",
   },
   contact: {
     eyebrow: "Contact",

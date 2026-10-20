@@ -17,7 +17,7 @@ Este roadmap registra sequência, não compromisso de prazo.
 - traduzir os artigos do blog para inglês, com revisão do autor;
 - migrar projetos prioritários para estudos de caso incrementais;
 - definir disponibilidade e metadata de cada tradução de artigo;
-- adicionar os currículos oficiais quando forem fornecidos.
+- adicionar os currículos oficiais (concluído; atualização via `npm run resumes`).
 
 ## Experiência e SEO
 

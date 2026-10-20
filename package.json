@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "resumes": "node scripts/update-resumes.mjs"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.2.8",

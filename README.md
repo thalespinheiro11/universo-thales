@@ -29,7 +29,8 @@ Scripts disponíveis:
 - `npm run dev`: servidor de desenvolvimento;
 - `npm run build`: build de produção;
 - `npm run start`: executa o build;
-- `npm run lint`: análise com ESLint.
+- `npm run lint`: análise com ESLint;
+- `npm run resumes`: atualiza os currículos publicados (veja abaixo).
 
 Para verificar tipos separadamente, execute `npx tsc --noEmit`.
 
@@ -49,6 +50,16 @@ Para verificar tipos separadamente, execute `npx tsc --noEmit`.
 Os locales públicos são `pt-br` e `en`, sempre explícitos na URL. PT-BR é o fallback. A solução usa recursos nativos do App Router, sem biblioteca externa: segmento dinâmico, validação de locale, conteúdo carregado no servidor e `proxy.ts` para redirecionar URLs sem locale.
 
 Projetos e artigos têm uma identidade compartilhada e traduções opcionais. Enquanto uma tradução não existe, a versão PT-BR é usada; a migração completa do conteúdo será incremental. Consulte [`docs/i18n.md`](docs/i18n.md).
+
+## Currículos
+
+Os PDFs publicados ficam em `public/documents/resume/` com nomes fixos, definidos em `config/site.ts`. Para atualizar, salve as versões novas em `C:\Documentos` com os nomes `Currículo - Thales Pinheiro (PT-BR).pdf` e `Thales Pinheiro - Resume.pdf` e rode:
+
+```bash
+npm run resumes
+```
+
+Para usar outros arquivos, passe os caminhos (PT-BR primeiro): `npm run resumes -- "C:\caminho\pt.pdf" "C:\caminho\en.pdf"`. O comando valida os dois PDFs antes de copiar. Depois, faça commit e push para publicar.
 
 ## Documentação e deploy
 
